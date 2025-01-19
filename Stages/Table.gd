@@ -205,7 +205,7 @@ func _on_enemy_health_gui_input(event: InputEvent) -> void:
 	
 func _on_enemy_health_value_changed(value: float) -> void:
 	if value <= 0:
-		player_win.emit()
+		_on_player_win()
 
 func stack_decks() -> void:
 	# first put all the cards from the board back into the complete deck
