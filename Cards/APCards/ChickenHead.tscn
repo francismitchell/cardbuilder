@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3ntabllgcivh"]
+
+[ext_resource type="PackedScene" uid="uid://b8n0bs6ul23es" path="res://Cards/BaseCard.tscn" id="1_xaw5g"]
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="2_eru0f"]
+
+[sub_resource type="Resource" id="Resource_hytil"]
+script = ExtResource("2_eru0f")
+card_type = 0
+card_name = "Chicken head"
+card_ap = 3
+card_hp = 1
+
+[node name="Card" instance=ExtResource("1_xaw5g")]
+card_data = SubResource("Resource_hytil")
+
+[node name="ApLabel" parent="ApComponents/ApBackground" index="1"]
+text = "3"
+
+[node name="HpComponents" parent="." index="1"]
+visible = false
+
+[node name="HpLabel" parent="HpComponents/HpBackground" index="1"]
+text = "1"

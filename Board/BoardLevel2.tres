@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="BoardData" load_steps=9 format=3 uid="uid://b5rdar0bohxrn"]
+
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="1_dwua7"]
+[ext_resource type="Texture2D" uid="uid://b8ehu20v0ukqv" path="res://Cards/Images/AP_placeholder.png" id="2_3cjsh"]
+[ext_resource type="Texture2D" uid="uid://upqax2rc1tf7" path="res://Cards/Images/HP_placeholder.png" id="3_ah4vn"]
+[ext_resource type="Script" path="res://Board/Scripts/BoardData.gd" id="4_i71w1"]
+
+[sub_resource type="Resource" id="Resource_67g33"]
+script = ExtResource("1_dwua7")
+card_team = 1
+card_type = 2
+card_ap_ability = 0
+card_hp_ability = 0
+card_statuses = Array[int]([])
+card_name = ""
+card_ap_texture = ExtResource("2_3cjsh")
+card_hp_texture = ExtResource("3_ah4vn")
+card_ap = 2
+card_hp = 3
+
+[sub_resource type="Resource" id="Resource_vk3f7"]
+script = ExtResource("1_dwua7")
+card_team = 1
+card_type = 2
+card_ap_ability = 0
+card_hp_ability = 0
+card_statuses = Array[int]([])
+card_name = ""
+card_ap_texture = ExtResource("2_3cjsh")
+card_hp_texture = ExtResource("3_ah4vn")
+card_ap = 3
+card_hp = 3
+
+[sub_resource type="Resource" id="Resource_rhmea"]
+script = ExtResource("1_dwua7")
+card_team = 1
+card_type = 2
+card_ap_ability = 0
+card_hp_ability = 0
+card_statuses = Array[int]([])
+card_name = ""
+card_ap_texture = ExtResource("2_3cjsh")
+card_hp_texture = ExtResource("3_ah4vn")
+card_ap = 2
+card_hp = 2
+
+[sub_resource type="Resource" id="Resource_8jtek"]
+script = ExtResource("1_dwua7")
+card_team = 1
+card_type = 2
+card_ap_ability = 0
+card_hp_ability = 0
+card_statuses = Array[int]([])
+card_name = ""
+card_ap_texture = ExtResource("2_3cjsh")
+card_hp_texture = ExtResource("3_ah4vn")
+card_ap = 2
+card_hp = 3
+
+[resource]
+script = ExtResource("4_i71w1")
+board = Array[ExtResource("1_dwua7")]([SubResource("Resource_67g33"), SubResource("Resource_vk3f7"), SubResource("Resource_rhmea"), SubResource("Resource_8jtek"), null, null, null, null, null, null, null, null, null, null, null, null])

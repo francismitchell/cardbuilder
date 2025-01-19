@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8355u067pdh0"]
+
+[ext_resource type="Shader" path="res://Cards/InverseShader.gdshader" id="1_8qxkb"]
+[ext_resource type="Script" path="res://Decks/Scripts/Deck.gd" id="1_c2pqh"]
+[ext_resource type="Texture2D" uid="uid://d05dwqsig7c1n" path="res://Cards/Images/AP_bg.png" id="2_b7mn1"]
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="5_iq1l0"]
+[ext_resource type="Script" path="res://Decks/Scripts/DeckData.gd" id="5_jukmb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i82l5"]
+resource_local_to_scene = true
+shader = ExtResource("1_8qxkb")
+shader_parameter/enabled = false
+shader_parameter/brightness = 0.67
+
+[sub_resource type="Resource" id="Resource_c6dms"]
+script = ExtResource("5_jukmb")
+deck_type = 0
+deck_orientation = 0
+deck = Array[ExtResource("5_iq1l0")]([])
+
+[node name="ApDeck" type="TextureRect"]
+z_index = 8
+material = SubResource("ShaderMaterial_i82l5")
+offset_right = 256.0
+offset_bottom = 192.0
+pivot_offset = Vector2(128, 96)
+texture = ExtResource("2_b7mn1")
+script = ExtResource("1_c2pqh")
+deck_data = SubResource("Resource_c6dms")

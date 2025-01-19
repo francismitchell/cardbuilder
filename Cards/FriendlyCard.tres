@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://ona8c85ltj0"]
+
+[ext_resource type="Texture2D" uid="uid://b8ehu20v0ukqv" path="res://Cards/Images/AP_placeholder.png" id="1_are0b"]
+[ext_resource type="Texture2D" uid="uid://upqax2rc1tf7" path="res://Cards/Images/HP_placeholder.png" id="2_aboct"]
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="3_ave0l"]
+
+[resource]
+script = ExtResource("3_ave0l")
+card_team = 0
+card_type = 2
+card_name = ""
+card_ap_texture = ExtResource("1_are0b")
+card_hp_texture = ExtResource("2_aboct")
+card_ap = 3
+card_hp = 4

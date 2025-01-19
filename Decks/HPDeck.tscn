@@ -1,0 +1,26 @@
+[gd_scene load_steps=8 format=3 uid="uid://kxq2v478o6na"]
+
+[ext_resource type="Shader" path="res://Cards/InverseShader.gdshader" id="1_ij4re"]
+[ext_resource type="Script" path="res://Decks/Scripts/Deck.gd" id="1_rd8cj"]
+[ext_resource type="Texture2D" uid="uid://c8y2ueofy62oj" path="res://Cards/Images/HP_bg.png" id="2_gwavs"]
+[ext_resource type="Script" path="res://Decks/Scripts/DeckData.gd" id="5_2xh7o"]
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="7_5mrwf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oja8g"]
+resource_local_to_scene = true
+shader = ExtResource("1_ij4re")
+shader_parameter/enabled = false
+shader_parameter/brightness = 0.755
+
+[sub_resource type="Resource" id="Resource_j1sxi"]
+script = ExtResource("5_2xh7o")
+deck_type = 1
+deck_orientation = 0
+deck = Array[ExtResource("7_5mrwf")]([])
+
+[node name="HpDeck" type="TextureRect"]
+material = SubResource("ShaderMaterial_oja8g")
+pivot_offset = Vector2(128, 96)
+texture = ExtResource("2_gwavs")
+script = ExtResource("1_rd8cj")
+deck_data = SubResource("Resource_j1sxi")

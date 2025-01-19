@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=8 format=3 uid="uid://bcrrilu3psy28"]
+
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="1_xefgv"]
+[ext_resource type="Texture2D" uid="uid://b8ehu20v0ukqv" path="res://Cards/Images/AP_placeholder.png" id="2_t527d"]
+[ext_resource type="Texture2D" uid="uid://upqax2rc1tf7" path="res://Cards/Images/HP_placeholder.png" id="3_g8ews"]
+[ext_resource type="Script" path="res://Decks/Scripts/DeckData.gd" id="5_auvfn"]
+
+[sub_resource type="Resource" id="Resource_30rms"]
+script = ExtResource("1_xefgv")
+card_team = 0
+card_type = 1
+card_name = "Poo"
+card_ap_texture = ExtResource("2_t527d")
+card_hp_texture = ExtResource("3_g8ews")
+card_ap = 3
+card_hp = 4
+
+[sub_resource type="Resource" id="Resource_o5f26"]
+script = ExtResource("1_xefgv")
+card_team = 0
+card_type = 0
+card_name = "Poo"
+card_ap_texture = ExtResource("2_t527d")
+card_hp_texture = ExtResource("3_g8ews")
+card_ap = 2
+card_hp = 4
+
+[sub_resource type="Resource" id="Resource_teogf"]
+script = ExtResource("1_xefgv")
+card_team = 0
+card_type = 0
+card_name = ""
+card_ap_texture = ExtResource("2_t527d")
+card_ap = 1
+card_hp = 1
+
+[resource]
+script = ExtResource("5_auvfn")
+deck_type = 1
+deck = Array[ExtResource("1_xefgv")]([SubResource("Resource_30rms"), SubResource("Resource_o5f26"), SubResource("Resource_teogf")])

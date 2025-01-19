@@ -1,0 +1,173 @@
+[gd_scene load_steps=21 format=3 uid="uid://ok417g8wclu8"]
+
+[ext_resource type="Script" path="res://Board/Scripts/Board.gd" id="1_f2erh"]
+[ext_resource type="Resource" uid="uid://b5rdar0bohxrn" path="res://Board/BoardLevel2.tres" id="2_blhir"]
+[ext_resource type="Shader" path="res://Cards/InverseShader.gdshader" id="8_607h0"]
+[ext_resource type="PackedScene" uid="uid://csq7vbxyu4ycv" path="res://Board/BoardTile.tscn" id="10_8d01k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i82n1"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0g61"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t7482"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2u8wm"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y5fpm"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xd668"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lrdtj"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2r2n"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ccf2t"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4y6h"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5wuhm"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4hfkx"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ug2t4"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i220j"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_susdt"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8xyx1"]
+resource_local_to_scene = true
+shader = ExtResource("8_607h0")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_f2erh")
+board_data = ExtResource("2_blhir")
+
+[node name="BoardTile0" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_i82n1")
+
+[node name="BoardTile1" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_d0g61")
+position = Vector2(512, 0)
+
+[node name="BoardTile2" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_t7482")
+position = Vector2(1024, 0)
+
+[node name="BoardTile3" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_2u8wm")
+position = Vector2(1536, 0)
+
+[node name="BoardTile4" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_y5fpm")
+position = Vector2(0, 512)
+
+[node name="BoardTile5" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_xd668")
+position = Vector2(512, 512)
+
+[node name="BoardTile6" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_lrdtj")
+position = Vector2(1024, 512)
+
+[node name="BoardTile7" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_h2r2n")
+position = Vector2(1536, 512)
+
+[node name="BoardTile8" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_ccf2t")
+position = Vector2(0, 1024)
+
+[node name="BoardTile9" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_f4y6h")
+position = Vector2(512, 1024)
+
+[node name="BoardTile10" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_5wuhm")
+position = Vector2(1024, 1024)
+
+[node name="BoardTile11" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_4hfkx")
+position = Vector2(1536, 1024)
+
+[node name="BoardTile12" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_ug2t4")
+position = Vector2(0, 1536)
+can_place_card = true
+
+[node name="BoardTile13" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_i220j")
+position = Vector2(512, 1536)
+can_place_card = true
+
+[node name="BoardTile14" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_susdt")
+position = Vector2(1024, 1536)
+can_place_card = true
+
+[node name="BoardTile15" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_8xyx1")
+position = Vector2(1536, 1536)
+can_place_card = true

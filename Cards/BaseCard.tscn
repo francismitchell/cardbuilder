@@ -1,0 +1,159 @@
+[gd_scene load_steps=18 format=3 uid="uid://b8n0bs6ul23es"]
+
+[ext_resource type="Script" path="res://Cards/Scripts/Card.gd" id="1_i3i6g"]
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="4_2qq15"]
+[ext_resource type="Texture2D" uid="uid://b8ehu20v0ukqv" path="res://Cards/Images/AP_placeholder.png" id="4_prcu1"]
+[ext_resource type="Shader" path="res://Cards/InverseShader.gdshader" id="5_24x2a"]
+[ext_resource type="Texture2D" uid="uid://d05dwqsig7c1n" path="res://Cards/Images/AP_bg.png" id="6_1h0vj"]
+[ext_resource type="Texture2D" uid="uid://upqax2rc1tf7" path="res://Cards/Images/HP_placeholder.png" id="6_elqf8"]
+[ext_resource type="Material" uid="uid://g7j20dbecimx" path="res://Cards/InverseShader.tres" id="7_syucd"]
+[ext_resource type="Texture2D" uid="uid://c8y2ueofy62oj" path="res://Cards/Images/HP_bg.png" id="8_jfi50"]
+[ext_resource type="Texture2D" uid="uid://bkycqqqcxpj7h" path="res://icon.svg" id="9_yg0f7"]
+[ext_resource type="LabelSettings" uid="uid://b8pkmg34vr4fm" path="res://Board/CalloutLabelSettings.tres" id="10_6knf3"]
+
+[sub_resource type="Resource" id="Resource_qdmjo"]
+script = ExtResource("4_2qq15")
+card_team = 0
+card_type = 2
+card_ap_ability = 0
+card_hp_ability = 0
+card_statuses = Array[int]([])
+card_name = ""
+card_ap_texture = ExtResource("4_prcu1")
+card_hp_texture = ExtResource("6_elqf8")
+card_ap = 3
+card_hp = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1tmd"]
+resource_local_to_scene = true
+shader = ExtResource("5_24x2a")
+shader_parameter/enabled = false
+shader_parameter/brightness = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ljxdw"]
+font_size = 48
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7loec"]
+size = Vector2(256, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md6bq"]
+size = Vector2(256, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldcdo"]
+size = Vector2(256, 384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpfra"]
+size = Vector2(128, 128)
+
+[node name="Card" type="Node2D"]
+script = ExtResource("1_i3i6g")
+card_data = SubResource("Resource_qdmjo")
+
+[node name="ApComponents" type="CanvasGroup" parent="."]
+position = Vector2(0, -96)
+metadata/_edit_group_ = true
+
+[node name="ApBackground" type="Sprite2D" parent="ApComponents"]
+material = SubResource("ShaderMaterial_p1tmd")
+texture = ExtResource("6_1h0vj")
+metadata/_edit_use_anchors_ = true
+
+[node name="ApSprite" type="Sprite2D" parent="ApComponents/ApBackground"]
+material = ExtResource("7_syucd")
+texture = ExtResource("4_prcu1")
+metadata/_edit_use_anchors_ = true
+
+[node name="ApLabel" type="Label" parent="ApComponents/ApBackground"]
+anchors_preset = -1
+anchor_left = -4.47266
+anchor_top = -0.859375
+anchor_right = -4.47266
+anchor_bottom = -0.859375
+offset_left = 1054.0
+offset_top = 94.0
+offset_right = 1081.0
+offset_bottom = 161.0
+text = "3"
+label_settings = SubResource("LabelSettings_ljxdw")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="ApComponents"]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ApComponents/Area2D"]
+shape = SubResource("RectangleShape2D_7loec")
+
+[node name="HpComponents" type="CanvasGroup" parent="."]
+position = Vector2(0, 96)
+metadata/_edit_group_ = true
+
+[node name="HpBackground" type="Sprite2D" parent="HpComponents"]
+material = ExtResource("7_syucd")
+texture = ExtResource("8_jfi50")
+metadata/_edit_use_anchors_ = true
+
+[node name="HpSprite" type="Sprite2D" parent="HpComponents/HpBackground"]
+material = ExtResource("7_syucd")
+texture = ExtResource("6_elqf8")
+metadata/_edit_use_anchors_ = true
+
+[node name="HpLabel" type="Label" parent="HpComponents/HpBackground"]
+anchors_preset = -1
+anchor_left = -0.8125
+anchor_top = -10.0104
+anchor_right = -0.8125
+anchor_bottom = -10.0104
+offset_left = 273.0
+offset_top = 1924.0
+offset_right = 300.0
+offset_bottom = 1991.0
+text = "6"
+label_settings = SubResource("LabelSettings_ljxdw")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="HpComponents"]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HpComponents/Area2D"]
+shape = SubResource("RectangleShape2D_md6bq")
+
+[node name="CompComponents" type="CanvasGroup" parent="."]
+
+[node name="Area2D" type="Area2D" parent="CompComponents"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CompComponents/Area2D"]
+shape = SubResource("RectangleShape2D_ldcdo")
+
+[node name="AbilityLabel" type="Sprite2D" parent="."]
+position = Vector2(83, -36)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_yg0f7")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="AbilityLabel"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityLabel/Area2D"]
+shape = SubResource("RectangleShape2D_bpfra")
+
+[node name="Label" type="Label" parent="AbilityLabel"]
+visible = false
+offset_left = -296.0
+offset_top = 104.0
+offset_right = 311.0
+offset_bottom = 279.0
+text = "NONE"
+label_settings = ExtResource("10_6knf3")
+
+[connection signal="input_event" from="ApComponents/Area2D" to="." method="_on_ap_area_2d_input_event"]
+[connection signal="mouse_entered" from="ApComponents/Area2D" to="." method="_on_ap_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="ApComponents/Area2D" to="." method="_on_ap_area_2d_mouse_exited"]
+[connection signal="input_event" from="HpComponents/Area2D" to="." method="_on_hp_area_2d_input_event"]
+[connection signal="mouse_entered" from="HpComponents/Area2D" to="." method="_on_hp_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="HpComponents/Area2D" to="." method="_on_hp_area_2d_mouse_exited"]
+[connection signal="input_event" from="CompComponents/Area2D" to="." method="_on_complete_area_2d_input_event"]
+[connection signal="mouse_entered" from="CompComponents/Area2D" to="." method="_on_complete_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CompComponents/Area2D" to="." method="_on_complete_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="AbilityLabel/Area2D" to="." method="_on_ability_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="AbilityLabel/Area2D" to="." method="_on_ability_area_2d_mouse_exited"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8rnbfd32l6f8"]
+
+[ext_resource type="Script" path="res://Decks/Scripts/Deck.gd" id="1_u77cj"]
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="2_6t34k"]
+[ext_resource type="Script" path="res://Decks/Scripts/DeckData.gd" id="3_ra28f"]
+
+[sub_resource type="Resource" id="Resource_xmbbp"]
+script = ExtResource("3_ra28f")
+deck_type = 0
+deck_orientation = 1
+deck = Array[ExtResource("2_6t34k")]([])
+
+[node name="CompleteCardDeck" type="TextureRect"]
+script = ExtResource("1_u77cj")
+deck_width_px = 750
+deck_data = SubResource("Resource_xmbbp")
