@@ -16,6 +16,7 @@ var card_hovered : bool = false
 	set(value):
 		current_hp = value
 		_on_card_data_changed()
+@onready var base_transform : Transform2D = transform
 
 @export var card_data : CardData:
 	set(value):
@@ -145,15 +146,25 @@ func _kill_card() -> void:
 	await tween.finished
 	self.queue_free()
 	
-func hover() -> void:
+func hover(mouse_pos : Vector2) -> void:
+	# get vector from origin to mouse position
+	var v : Vector2
+	if card_data.card_type == CardData.CARD_TYPE.AP_CARD:
+		v = mouse_pos - $ApComponents.global_position
+	elif card_data.card_type == CardData.CARD_TYPE.HP_CARD:
+		v = mouse_pos - $HpComponents.global_position
+	elif card_data.card_type == CardData.CARD_TYPE.COMPLETE_CARD:
+		v = mouse_pos - $CompComponents.global_position
+	transform.x = base_transform.x + 0.001 * v
+	transform.y = base_transform.y + 0.001 * v
 	z_index = 1
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "scale", Vector2(1.1,1.1), 0.05)
 	
 func unhover() -> void:
 	z_index = 0
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "scale", Vector2(1,1), 0.05)
+	#tween.tween_property(self, "scale", Vector2(1,1), 0.05)
+	tween.parallel().tween_property(self, "transform:x", base_transform.x, 0.05)
+	tween.parallel().tween_property(self, "transform:y", base_transform.y, 0.05)
 
 
 func _on_ability_area_2d_mouse_entered() -> void:

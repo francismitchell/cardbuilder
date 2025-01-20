@@ -271,10 +271,10 @@ func _on_mouse_motion(card: Card, mouse_pos: Vector2) -> void:
 	if hovered_card and hovered_card != closest_card:
 		hovered_card.unhover()
 		hovered_card = closest_card
-		hovered_card.hover()
+		hovered_card.hover(mouse_pos)
 	else:
 		hovered_card = closest_card
-		hovered_card.hover()
+		hovered_card.hover(mouse_pos)
 
 	
 			
