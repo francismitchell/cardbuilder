@@ -3,6 +3,7 @@ class_name Card
 extends Node2D
 
 const HP_CARD_OFFSET_PX : int = 192
+const SHEAR_SCALE : float = 0.0002
 
 signal card_pressed
 signal card_mouse_entered
@@ -155,8 +156,8 @@ func hover(mouse_pos : Vector2) -> void:
 		v = mouse_pos - $HpComponents.global_position
 	elif card_data.card_type == CardData.CARD_TYPE.COMPLETE_CARD:
 		v = mouse_pos - $CompComponents.global_position
-	transform.x = base_transform.x + 0.001 * v
-	transform.y = base_transform.y + 0.001 * v
+	transform.x = base_transform.x + SHEAR_SCALE * v
+	transform.y = base_transform.y + SHEAR_SCALE * v
 	z_index = 1
 	
 func unhover() -> void:
