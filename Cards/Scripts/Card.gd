@@ -25,6 +25,8 @@ var card_hovered : bool = false
 		if card_data:
 			if not card_data.changed.is_connected(_on_card_data_changed):
 				card_data.changed.connect(_on_card_data_changed)
+		if Engine.is_editor_hint():
+			_on_card_data_changed()
 
 func _ready() -> void:
 	if card_data:

@@ -1,28 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8n0bs6ul23es"]
+[gd_scene load_steps=17 format=3 uid="uid://b8n0bs6ul23es"]
 
 [ext_resource type="Script" path="res://Cards/Scripts/Card.gd" id="1_i3i6g"]
-[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="4_2qq15"]
-[ext_resource type="Texture2D" uid="uid://b8ehu20v0ukqv" path="res://Cards/Images/AP_placeholder.png" id="4_prcu1"]
+[ext_resource type="Resource" uid="uid://co3xy61dlb7pw" path="res://Cards/Hedgehog.tres" id="2_jw4gy"]
 [ext_resource type="Shader" path="res://Cards/InverseShader.gdshader" id="5_24x2a"]
 [ext_resource type="Texture2D" uid="uid://d05dwqsig7c1n" path="res://Cards/Images/AP_bg.png" id="6_1h0vj"]
-[ext_resource type="Texture2D" uid="uid://upqax2rc1tf7" path="res://Cards/Images/HP_placeholder.png" id="6_elqf8"]
+[ext_resource type="Texture2D" uid="uid://dxccojbh48fup" path="res://Cards/Images/AP_hedgehog.png" id="6_pong8"]
 [ext_resource type="Material" uid="uid://g7j20dbecimx" path="res://Cards/InverseShader.tres" id="7_syucd"]
+[ext_resource type="Texture2D" uid="uid://bdhhj4t5ocys2" path="res://Cards/Images/HP_hedgehog.png" id="8_18l3m"]
 [ext_resource type="Texture2D" uid="uid://c8y2ueofy62oj" path="res://Cards/Images/HP_bg.png" id="8_jfi50"]
 [ext_resource type="Texture2D" uid="uid://bkycqqqcxpj7h" path="res://icon.svg" id="9_yg0f7"]
 [ext_resource type="LabelSettings" uid="uid://b8pkmg34vr4fm" path="res://Board/CalloutLabelSettings.tres" id="10_6knf3"]
-
-[sub_resource type="Resource" id="Resource_qdmjo"]
-script = ExtResource("4_2qq15")
-card_team = 0
-card_type = 2
-card_ap_ability = 0
-card_hp_ability = 0
-card_statuses = Array[int]([])
-card_name = ""
-card_ap_texture = ExtResource("4_prcu1")
-card_hp_texture = ExtResource("6_elqf8")
-card_ap = 3
-card_hp = 6
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p1tmd"]
 resource_local_to_scene = true
@@ -47,7 +34,7 @@ size = Vector2(128, 128)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_i3i6g")
-card_data = SubResource("Resource_qdmjo")
+card_data = ExtResource("2_jw4gy")
 
 [node name="ApComponents" type="CanvasGroup" parent="."]
 position = Vector2(0, -96)
@@ -60,7 +47,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ApSprite" type="Sprite2D" parent="ApComponents/ApBackground"]
 material = ExtResource("7_syucd")
-texture = ExtResource("4_prcu1")
+texture = ExtResource("6_pong8")
 metadata/_edit_use_anchors_ = true
 
 [node name="ApLabel" type="Label" parent="ApComponents/ApBackground"]
@@ -73,7 +60,7 @@ offset_left = 1054.0
 offset_top = 94.0
 offset_right = 1081.0
 offset_bottom = 161.0
-text = "3"
+text = "1"
 label_settings = SubResource("LabelSettings_ljxdw")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -95,7 +82,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="HpSprite" type="Sprite2D" parent="HpComponents/HpBackground"]
 material = ExtResource("7_syucd")
-texture = ExtResource("6_elqf8")
+texture = ExtResource("8_18l3m")
 metadata/_edit_use_anchors_ = true
 
 [node name="HpLabel" type="Label" parent="HpComponents/HpBackground"]
@@ -108,7 +95,7 @@ offset_left = 273.0
 offset_top = 1924.0
 offset_right = 300.0
 offset_bottom = 1991.0
-text = "6"
+text = "3"
 label_settings = SubResource("LabelSettings_ljxdw")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true

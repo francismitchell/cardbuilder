@@ -1,62 +1,66 @@
-[gd_resource type="Resource" script_class="BoardData" load_steps=9 format=3 uid="uid://b5rdar0bohxrn"]
+[gd_resource type="Resource" script_class="BoardData" load_steps=13 format=3 uid="uid://b5rdar0bohxrn"]
 
 [ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="1_dwua7"]
-[ext_resource type="Texture2D" uid="uid://b8ehu20v0ukqv" path="res://Cards/Images/AP_placeholder.png" id="2_3cjsh"]
-[ext_resource type="Texture2D" uid="uid://upqax2rc1tf7" path="res://Cards/Images/HP_placeholder.png" id="3_ah4vn"]
+[ext_resource type="Texture2D" uid="uid://bxrb31c33m4x8" path="res://Cards/Images/AP_badger.png" id="2_mrs5j"]
+[ext_resource type="Texture2D" uid="uid://dq0q0fvat54dn" path="res://Cards/Images/HP_badger.png" id="3_t8g04"]
 [ext_resource type="Script" path="res://Board/Scripts/BoardData.gd" id="4_i71w1"]
+[ext_resource type="Texture2D" uid="uid://c0x0b7w7k8drs" path="res://Cards/Images/AP_adder.png" id="4_ow33i"]
+[ext_resource type="Texture2D" uid="uid://cj7xh7wfo3fwo" path="res://Cards/Images/HP_adder.png" id="5_dymb6"]
+[ext_resource type="Texture2D" uid="uid://dxccojbh48fup" path="res://Cards/Images/AP_hedgehog.png" id="6_htt8q"]
+[ext_resource type="Texture2D" uid="uid://bdhhj4t5ocys2" path="res://Cards/Images/HP_hedgehog.png" id="7_u1jt4"]
 
-[sub_resource type="Resource" id="Resource_67g33"]
+[sub_resource type="Resource" id="Resource_u37re"]
 script = ExtResource("1_dwua7")
 card_team = 1
 card_type = 2
-card_ap_ability = 0
+card_ap_ability = 1
 card_hp_ability = 0
 card_statuses = Array[int]([])
 card_name = ""
-card_ap_texture = ExtResource("2_3cjsh")
-card_hp_texture = ExtResource("3_ah4vn")
-card_ap = 2
+card_ap_texture = ExtResource("2_mrs5j")
+card_hp_texture = ExtResource("3_t8g04")
+card_ap = 4
 card_hp = 3
 
-[sub_resource type="Resource" id="Resource_vk3f7"]
+[sub_resource type="Resource" id="Resource_ug18q"]
 script = ExtResource("1_dwua7")
 card_team = 1
 card_type = 2
-card_ap_ability = 0
+card_ap_ability = 3
 card_hp_ability = 0
 card_statuses = Array[int]([])
 card_name = ""
-card_ap_texture = ExtResource("2_3cjsh")
-card_hp_texture = ExtResource("3_ah4vn")
-card_ap = 3
-card_hp = 3
-
-[sub_resource type="Resource" id="Resource_rhmea"]
-script = ExtResource("1_dwua7")
-card_team = 1
-card_type = 2
-card_ap_ability = 0
-card_hp_ability = 0
-card_statuses = Array[int]([])
-card_name = ""
-card_ap_texture = ExtResource("2_3cjsh")
-card_hp_texture = ExtResource("3_ah4vn")
+card_ap_texture = ExtResource("4_ow33i")
+card_hp_texture = ExtResource("5_dymb6")
 card_ap = 2
+card_hp = 1
+
+[sub_resource type="Resource" id="Resource_bxam3"]
+script = ExtResource("1_dwua7")
+card_team = 1
+card_type = 2
+card_ap_ability = 3
+card_hp_ability = 0
+card_statuses = Array[int]([])
+card_name = ""
+card_ap_texture = ExtResource("4_ow33i")
+card_hp_texture = ExtResource("5_dymb6")
+card_ap = 2
+card_hp = 1
+
+[sub_resource type="Resource" id="Resource_c324k"]
+script = ExtResource("1_dwua7")
+card_team = 1
+card_type = 2
+card_ap_ability = 0
+card_hp_ability = 0
+card_statuses = Array[int]([])
+card_name = ""
+card_ap_texture = ExtResource("6_htt8q")
+card_hp_texture = ExtResource("7_u1jt4")
+card_ap = 1
 card_hp = 2
-
-[sub_resource type="Resource" id="Resource_8jtek"]
-script = ExtResource("1_dwua7")
-card_team = 1
-card_type = 2
-card_ap_ability = 0
-card_hp_ability = 0
-card_statuses = Array[int]([])
-card_name = ""
-card_ap_texture = ExtResource("2_3cjsh")
-card_hp_texture = ExtResource("3_ah4vn")
-card_ap = 2
-card_hp = 3
 
 [resource]
 script = ExtResource("4_i71w1")
-board = Array[ExtResource("1_dwua7")]([SubResource("Resource_67g33"), SubResource("Resource_vk3f7"), SubResource("Resource_rhmea"), SubResource("Resource_8jtek"), null, null, null, null, null, null, null, null, null, null, null, null])
+board = Array[ExtResource("1_dwua7")]([SubResource("Resource_u37re"), SubResource("Resource_ug18q"), SubResource("Resource_bxam3"), SubResource("Resource_c324k"), null, null, null, null, null, null, null, null, null, null, null, null])
