@@ -112,6 +112,7 @@ func _attack_enemy(attacking_tile : BoardTile, defending_tile : BoardTile) -> vo
 				defending_tile.create_damage_callout("Disarmed!")
 		CardData.CardApAbility.INSTANT_KILL:
 			attack_dmg += 999
+			defending_tile.create_damage_callout("Instakill!")
 		CardData.CardApAbility.LIFESTEAL:
 			attacking_card.current_hp += attacking_card.card_data.card_ap
 			defending_tile.create_damage_callout("Lifesteal!")
@@ -125,6 +126,12 @@ func _attack_enemy(attacking_tile : BoardTile, defending_tile : BoardTile) -> vo
 	if attack_dmg > 0:
 		defending_card.damage_card(attack_dmg)
 		defending_tile.create_damage_callout("Damaged!")
+		# check if defending card has any effects that damage attacker
+		match defending_card.card_data.card_hp_ability:
+			CardData.CardHpAbility.SPINES:
+				if CardData.CardStatus.BLEEDING not in attacking_card.card_data.card_statuses:
+					attacking_card.card_data.card_statuses.append(CardData.CardStatus.BLEEDING)
+					attacking_tile.create_damage_callout("Spiked!")
 
 	
 func _move_card_to_tile(from_tile: BoardTile, to_tile : BoardTile) -> void:

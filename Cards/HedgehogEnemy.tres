@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://dtn1yocr00x6b"]
+
+[ext_resource type="Texture2D" uid="uid://dxccojbh48fup" path="res://Cards/Images/AP_hedgehog.png" id="1_04c10"]
+[ext_resource type="Texture2D" uid="uid://bdhhj4t5ocys2" path="res://Cards/Images/HP_hedgehog.png" id="2_g12hh"]
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="3_x2hjs"]
+
+[resource]
+script = ExtResource("3_x2hjs")
+card_team = 1
+card_type = 2
+card_ap_ability = 0
+card_hp_ability = 1
+card_statuses = Array[int]([])
+card_name = ""
+card_ap_texture = ExtResource("1_04c10")
+card_hp_texture = ExtResource("2_g12hh")
+card_ap = 1
+card_hp = 2
