@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://bknabd5bdq316"]
+
+[ext_resource type="Texture2D" uid="uid://bxrb31c33m4x8" path="res://Cards/Images/AP_badger.png" id="1_oo64i"]
+[ext_resource type="Texture2D" uid="uid://dq0q0fvat54dn" path="res://Cards/Images/HP_badger.png" id="2_m2p8x"]
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="3_dfy5t"]
+
+[resource]
+script = ExtResource("3_dfy5t")
+card_team = 1
+card_type = 2
+card_ap_ability = 1
+card_hp_ability = 0
+card_statuses = Array[int]([])
+card_name = ""
+card_ap_texture = ExtResource("1_oo64i")
+card_hp_texture = ExtResource("2_m2p8x")
+card_ap = 4
+card_hp = 3

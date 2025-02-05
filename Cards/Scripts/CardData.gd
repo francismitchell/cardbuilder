@@ -5,7 +5,7 @@ extends Resource
 enum CARD_TYPE {AP_CARD, HP_CARD, COMPLETE_CARD}
 enum CARD_TEAM {FRIENDLY, ENEMY}
 enum CardApAbility {NONE, BLEED, DISARM, INSTANT_KILL, LIFESTEAL}
-enum CardHpAbility {NONE, SPINES}
+enum CardHpAbility {NONE, SPINES, HOP}
 enum CardStatus {BLEEDING, DISARMED}
 
 @export var card_team : CARD_TEAM:

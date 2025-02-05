@@ -1,12 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8n0bs6ul23es"]
+[gd_scene load_steps=13 format=3 uid="uid://b8n0bs6ul23es"]
 
 [ext_resource type="Script" path="res://Cards/Scripts/Card.gd" id="1_i3i6g"]
-[ext_resource type="Resource" uid="uid://co3xy61dlb7pw" path="res://Cards/Hedgehog.tres" id="2_jw4gy"]
+[ext_resource type="Texture2D" uid="uid://c4j1npcxvtnsq" path="res://Cards/Images/AP_frog.png" id="3_evmvl"]
+[ext_resource type="Texture2D" uid="uid://dhehnofjqkdbe" path="res://Cards/Images/HP_frog.png" id="4_ntea1"]
+[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="5_4l3nn"]
 [ext_resource type="Texture2D" uid="uid://d05dwqsig7c1n" path="res://Cards/Images/AP_bg.png" id="6_1h0vj"]
-[ext_resource type="Texture2D" uid="uid://dxccojbh48fup" path="res://Cards/Images/AP_hedgehog.png" id="6_pong8"]
 [ext_resource type="Material" uid="uid://g7j20dbecimx" path="res://Cards/InverseShader.tres" id="7_syucd"]
-[ext_resource type="Texture2D" uid="uid://bdhhj4t5ocys2" path="res://Cards/Images/HP_hedgehog.png" id="8_18l3m"]
 [ext_resource type="Texture2D" uid="uid://c8y2ueofy62oj" path="res://Cards/Images/HP_bg.png" id="8_jfi50"]
+
+[sub_resource type="Resource" id="Resource_q8v4j"]
+script = ExtResource("5_4l3nn")
+card_team = 1
+card_type = 2
+card_ap_ability = 0
+card_hp_ability = 2
+card_statuses = Array[int]([])
+card_name = ""
+card_ap_texture = ExtResource("3_evmvl")
+card_hp_texture = ExtResource("4_ntea1")
+card_ap = 1
+card_hp = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_ljxdw"]
 font_size = 48
@@ -23,7 +36,7 @@ size = Vector2(256, 384)
 [node name="Card" type="Node2D"]
 material = ExtResource("7_syucd")
 script = ExtResource("1_i3i6g")
-card_data = ExtResource("2_jw4gy")
+card_data = SubResource("Resource_q8v4j")
 
 [node name="ApBackground" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -34,7 +47,7 @@ metadata/_edit_use_anchors_ = true
 [node name="ApSprite" type="Sprite2D" parent="ApBackground"]
 material = ExtResource("7_syucd")
 use_parent_material = true
-texture = ExtResource("6_pong8")
+texture = ExtResource("3_evmvl")
 metadata/_edit_use_anchors_ = true
 
 [node name="ApLabel" type="Label" parent="ApBackground"]
@@ -68,7 +81,7 @@ metadata/_edit_use_anchors_ = true
 [node name="HpSprite" type="Sprite2D" parent="HpBackground"]
 material = ExtResource("7_syucd")
 use_parent_material = true
-texture = ExtResource("8_18l3m")
+texture = ExtResource("4_ntea1")
 metadata/_edit_use_anchors_ = true
 
 [node name="HpLabel" type="Label" parent="HpBackground"]
