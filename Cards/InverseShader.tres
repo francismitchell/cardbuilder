@@ -5,5 +5,8 @@
 [resource]
 resource_local_to_scene = true
 shader = ExtResource("1_b85xk")
-shader_parameter/enabled = false
+shader_parameter/enabled = true
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 1
+shader_parameter/Strength = 1.098
+shader_parameter/RandomOffset = 1.0

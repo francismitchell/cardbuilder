@@ -10,96 +10,144 @@ resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d0g61"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t7482"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2u8wm"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y5fpm"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xd668"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lrdtj"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2r2n"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ccf2t"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f4y6h"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5wuhm"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4hfkx"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ug2t4"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i220j"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_susdt"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8xyx1"]
 resource_local_to_scene = true
 shader = ExtResource("8_607h0")
 shader_parameter/enabled = false
 shader_parameter/brightness = 1.0
+shader_parameter/effect_idx = 0
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_f2erh")

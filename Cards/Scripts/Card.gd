@@ -44,49 +44,35 @@ func _on_card_data_changed() -> void:
 	if not card_data:
 		return
 	if card_data.card_type == CardData.CARD_TYPE.AP_CARD:
-		$ApComponents/Area2D.input_pickable = true
-		$HpComponents/Area2D.input_pickable = false
-		$CompComponents/Area2D.input_pickable = false
-		$AbilityLabel.position.y = -36
-		$ApComponents.show()
-		$HpComponents.hide()
-		$CompComponents.hide()
+		$ApBackground/Area2D.input_pickable = true
+		$HpBackground/Area2D.input_pickable = false
+		$Area2D.input_pickable = false
+		$ApBackground.show()
+		$HpBackground.hide()
+		$Area2D.hide()
 	elif card_data.card_type == CardData.CARD_TYPE.HP_CARD:
-		$ApComponents/Area2D.input_pickable = false
-		$HpComponents/Area2D.input_pickable = true
-		$CompComponents/Area2D.input_pickable = false
-		$AbilityLabel.position.y = 36
-		$ApComponents.hide()
-		$HpComponents.show()
-		$CompComponents.hide()
+		$ApBackground/Area2D.input_pickable = false
+		$HpBackground/Area2D.input_pickable = true
+		$Area2D.input_pickable = false
+		$ApBackground.hide()
+		$HpBackground.show()
+		$Area2D.hide()
 	elif card_data.card_type == CardData.CARD_TYPE.COMPLETE_CARD:
-		$ApComponents/Area2D.input_pickable = false
-		$HpComponents/Area2D.input_pickable = false
-		$CompComponents/Area2D.input_pickable = true
-		$AbilityLabel.position.y = -36
-		$ApComponents.show()
-		$HpComponents.show()
-		$CompComponents.show()
-	$ApComponents/ApBackground/ApLabel.text = str(card_data.card_ap)
-	$HpComponents/HpBackground/HpLabel.text = str(current_hp)
-	$ApComponents/ApBackground/ApSprite.texture = card_data.card_ap_texture
-	$HpComponents/HpBackground/HpSprite.texture = card_data.card_hp_texture
+		$ApBackground/Area2D.input_pickable = false
+		$HpBackground/Area2D.input_pickable = false
+		$Area2D.input_pickable = true
+		$ApBackground.show()
+		$HpBackground.show()
+		$Area2D.show()
+	$ApBackground/ApLabel.text = str(card_data.card_ap)
+	$HpBackground/HpLabel.text = str(current_hp)
+	$ApBackground/ApSprite.texture = card_data.card_ap_texture
+	$HpBackground/HpSprite.texture = card_data.card_hp_texture
 	if card_data.card_team == CardData.CARD_TEAM.ENEMY:
-		$ApComponents/ApBackground.material.set("shader_parameter/enabled",true)
-		$ApComponents/ApBackground/ApSprite.material.set("shader_parameter/enabled",true)
-		$HpComponents/HpBackground.material.set("shader_parameter/enabled",true)
-		$HpComponents/HpBackground/HpSprite.material.set("shader_parameter/enabled",true)
-
-	else:
-		$ApComponents/ApBackground.material.set("shader_parameter/enabled",false)
-		$ApComponents/ApBackground/ApSprite.material.set("shader_parameter/enabled",false)
-		$HpComponents/HpBackground.material.set("shader_parameter/enabled",false)
-		$HpComponents/HpBackground/HpSprite.material.set("shader_parameter/enabled",false)
-		
-	if not card_data.card_ap_ability:
-		$AbilityLabel.scale = Vector2()
-	$AbilityLabel/Label.text = str(card_data.CardApAbility.keys()[card_data.card_ap_ability])
-	
+		material.set_shader_parameter("effect_idx",1)
+	elif card_data.card_team == CardData.CARD_TEAM.FRIENDLY:
+		print('changing shader parameter')
+		material.set_shader_parameter("effect_idx",0)
 
 	
 func _on_ap_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
@@ -153,11 +139,11 @@ func hover(mouse_pos : Vector2) -> void:
 	# get vector from origin to mouse position
 	var v : Vector2
 	if card_data.card_type == CardData.CARD_TYPE.AP_CARD:
-		v = mouse_pos - $ApComponents.global_position
+		v = mouse_pos - $ApBackground.global_position
 	elif card_data.card_type == CardData.CARD_TYPE.HP_CARD:
-		v = mouse_pos - $HpComponents.global_position
+		v = mouse_pos - $HpBackground.global_position
 	elif card_data.card_type == CardData.CARD_TYPE.COMPLETE_CARD:
-		v = mouse_pos - $CompComponents.global_position
+		v = mouse_pos - $Area2D.global_position
 	transform.x = base_transform.x + SHEAR_SCALE * v
 	transform.y = base_transform.y + SHEAR_SCALE * v
 	z_index = 1
@@ -168,10 +154,3 @@ func unhover() -> void:
 	#tween.tween_property(self, "scale", Vector2(1,1), 0.05)
 	tween.parallel().tween_property(self, "transform:x", base_transform.x, 0.05)
 	tween.parallel().tween_property(self, "transform:y", base_transform.y, 0.05)
-
-
-func _on_ability_area_2d_mouse_entered() -> void:
-	$AbilityLabel/Label.show()
-
-func _on_ability_area_2d_mouse_exited() -> void:
-	$AbilityLabel/Label.hide()

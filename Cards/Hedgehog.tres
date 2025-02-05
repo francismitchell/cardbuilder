@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("3_ny0nm")
-card_team = 0
+card_team = 1
 card_type = 2
 card_ap_ability = 0
 card_hp_ability = 1
