@@ -7,4 +7,4 @@
 
 [resource]
 script = ExtResource("4_rrflk")
-board = Array[ExtResource("1_7bt3m")]([ExtResource("2_mskvc"), null, ExtResource("2_mskvc"), null, null, null, ExtResource("2_mskvc"), ExtResource("3_g8svl"), null, null, null, ExtResource("2_mskvc"), null, null, null, null])
+board = Array[ExtResource("1_7bt3m")]([ExtResource("2_mskvc"), null, ExtResource("2_mskvc"), null, null, null, ExtResource("2_mskvc"), ExtResource("3_g8svl"), ExtResource("2_mskvc"), ExtResource("2_mskvc"), ExtResource("2_mskvc"), ExtResource("2_mskvc"), null, null, null, null])
