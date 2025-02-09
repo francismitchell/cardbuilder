@@ -105,6 +105,9 @@ resource_local_to_scene = true
 shader = ExtResource("10_3uxp5")
 shader_parameter/enabled = false
 shader_parameter/brightness = 0.67
+shader_parameter/effect_idx = null
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="Resource" id="Resource_khodq"]
 script = ExtResource("7_6con2")
@@ -117,6 +120,9 @@ resource_local_to_scene = true
 shader = ExtResource("10_3uxp5")
 shader_parameter/enabled = false
 shader_parameter/brightness = 0.755
+shader_parameter/effect_idx = null
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="Resource" id="Resource_fe2k3"]
 script = ExtResource("7_6con2")
@@ -128,8 +134,8 @@ deck = Array[ExtResource("4_fpa5h")]([])
 script = ExtResource("1_x3mii")
 
 [node name="Board" parent="." instance=ExtResource("1_58k22")]
-position = Vector2(380, 110)
-scale = Vector2(0.275, 0.275)
+position = Vector2(560, 155)
+scale = Vector2(0.5, 0.5)
 board_data = SubResource("Resource_fjjtc")
 
 [node name="PlayButton" type="Button" parent="."]
@@ -147,19 +153,19 @@ offset_bottom = 122.0
 text = "End turn"
 
 [node name="EnemyHealth" type="ProgressBar" parent="."]
-offset_left = 425.0
+offset_left = 782.0
 offset_top = 7.0
-offset_right = 749.0
+offset_right = 1106.0
 offset_bottom = 25.0
 max_value = 10.0
 value = 10.0
 show_percentage = false
 
 [node name="PlayerHealth" type="ProgressBar" parent="."]
-offset_left = 419.0
-offset_top = 621.0
-offset_right = 743.0
-offset_bottom = 639.0
+offset_left = 782.0
+offset_top = 1055.0
+offset_right = 1106.0
+offset_bottom = 1073.0
 max_value = 10.0
 value = 10.0
 show_percentage = false

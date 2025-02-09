@@ -11,12 +11,18 @@ resource_local_to_scene = true
 shader = ExtResource("3_hjtvv")
 shader_parameter/enabled = false
 shader_parameter/brightness = 0.585
+shader_parameter/effect_idx = null
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_03yc0"]
 resource_local_to_scene = true
 shader = ExtResource("3_hjtvv")
 shader_parameter/enabled = false
 shader_parameter/brightness = 0.585
+shader_parameter/effect_idx = null
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [node name="CardBuilder" type="Node2D"]
 script = ExtResource("1_bn3pl")

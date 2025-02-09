@@ -69,9 +69,7 @@ func _on_amalgamate_pressed() -> void:
 	$CompleteCardDeck.get_children().back().global_position = $ApAmalLoc.position
 	$CompleteCardDeck.deck_state = Deck.DeckState.UNFOLDED
 	$ApDeck.erase_selected_card()
-	#$ApDeck.deck_state = Deck.DeckState.UNFOLDED
 	$HpDeck.erase_selected_card()
-	#$HpDeck.deck_state = Deck.DeckState.UNFOLDED
 
 func _on_bisect_pressed() -> void:
 	if not $CompleteCardDeck.selected_card: return
