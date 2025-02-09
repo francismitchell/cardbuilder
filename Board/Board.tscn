@@ -1,60 +1,157 @@
-[gd_scene load_steps=4 format=3 uid="uid://ok417g8wclu8"]
+[gd_scene load_steps=21 format=3 uid="uid://ok417g8wclu8"]
 
 [ext_resource type="Script" path="res://Board/Scripts/Board.gd" id="1_f2erh"]
 [ext_resource type="Resource" uid="uid://b5rdar0bohxrn" path="res://Board/BoardLevel2.tres" id="2_blhir"]
+[ext_resource type="Shader" path="res://Board/BoardTile.gdshader" id="4_quja0"]
 [ext_resource type="PackedScene" uid="uid://csq7vbxyu4ycv" path="res://Board/BoardTile.tscn" id="10_8d01k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aduop"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_74aji"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8u2ee"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fnqjs"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68b36"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1j8yd"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trcml"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vgb1p"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_afidi"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8lri"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6veo0"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wce1"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wsemk"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qeu6w"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7fc3s"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbi53"]
+resource_local_to_scene = true
+shader = ExtResource("4_quja0")
+shader_parameter/brightness = 1.0
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_f2erh")
 board_data = ExtResource("2_blhir")
 
 [node name="BoardTile0" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_aduop")
 
 [node name="BoardTile1" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_74aji")
 position = Vector2(512, 0)
 
 [node name="BoardTile2" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_8u2ee")
 position = Vector2(1024, 0)
 
 [node name="BoardTile3" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_fnqjs")
 position = Vector2(1536, 0)
 
 [node name="BoardTile4" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_68b36")
 position = Vector2(0, 512)
 
 [node name="BoardTile5" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_1j8yd")
 position = Vector2(512, 512)
 
 [node name="BoardTile6" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_trcml")
 position = Vector2(1024, 512)
 
 [node name="BoardTile7" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_vgb1p")
 position = Vector2(1536, 512)
 
 [node name="BoardTile8" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_afidi")
 position = Vector2(0, 1024)
 
 [node name="BoardTile9" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_v8lri")
 position = Vector2(512, 1024)
 
 [node name="BoardTile10" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_6veo0")
 position = Vector2(1024, 1024)
 
 [node name="BoardTile11" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_0wce1")
 position = Vector2(1536, 1024)
 
 [node name="BoardTile12" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_wsemk")
 position = Vector2(0, 1536)
 can_place_card = true
 
 [node name="BoardTile13" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_qeu6w")
 position = Vector2(512, 1536)
 can_place_card = true
 
 [node name="BoardTile14" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_7fc3s")
 position = Vector2(1024, 1536)
 can_place_card = true
 
 [node name="BoardTile15" parent="." instance=ExtResource("10_8d01k")]
+material = SubResource("ShaderMaterial_qbi53")
 position = Vector2(1536, 1536)
 can_place_card = true

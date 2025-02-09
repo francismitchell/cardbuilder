@@ -132,7 +132,6 @@ func _attack_enemy(attacking_tile : BoardTile, defending_tile : BoardTile) -> vo
 				if CardData.CardStatus.BLEEDING not in attacking_card.card_data.card_statuses:
 					attacking_card.card_data.card_statuses.append(CardData.CardStatus.BLEEDING)
 					attacking_tile.create_damage_callout("Spiked!")
-
 	
 func _move_card_to_tile(from_tile: BoardTile, to_tile : BoardTile) -> void:
 	# first store card data to be transferred
@@ -205,21 +204,18 @@ func _apply_status_effects(team : CardData.CARD_TEAM) -> void:
 				CardData.CardStatus.BLEEDING:
 					tile.get_card().damage_card(1)
 					tile.create_damage_callout("Bleeding!")
-					
-			
 	
-
 func _show_clickable_tiles() -> void:
 	for child : BoardTile in get_children():
 		if child.tile_state == BoardTile.TileState.CONTAINS_PLAYER_CARD:
 			if child.get_card().card_data.get_instance_id() not in cards_played_this_round:
 				child.highlight_state = BoardTile.HighlightState.CLICKABLE
-			
+	
 func _hide_clickable_tiles() -> void:
 	for child : BoardTile in get_children():
 		if child.tile_state == BoardTile.TileState.CONTAINS_PLAYER_CARD and child.highlight_state == BoardTile.HighlightState.CLICKABLE:
 			child.highlight_state = BoardTile.HighlightState.NEUTRAL
-
+	
 # helper functions called by table to show where player can place cards during setup
 func show_placeable_tiles() -> void:
 	for child : BoardTile in get_children():
@@ -253,13 +249,13 @@ func _on_card_data_changed() -> void:
 	_populate_board()
 	
 func _highlight_adjacent_tiles(tile : BoardTile) -> void:
-	for i in _get_moveable_tile_indicies(int(tile.name.split("BoardTile")[1])):
+	for i in _get_moveable_tile_indicies(int(tile.name.split("BoardTile")[1]), tile.get_card().card_data.card_hp_ability):
 		var tile_to_highlight : BoardTile = get_node("BoardTile{0}".format([i]))
 		if tile_to_highlight.tile_state != BoardTile.TileState.CONTAINS_PLAYER_CARD:
 			tile_to_highlight.highlight_state = BoardTile.HighlightState.CLICKABLE
 		
 func _unhighlight_adjacent_tiles(tile : BoardTile) -> void:
-	for i in _get_moveable_tile_indicies(int(tile.name.split("BoardTile")[1])):
+	for i in _get_moveable_tile_indicies(int(tile.name.split("BoardTile")[1]), tile.get_card().card_data.card_hp_ability):
 		var tile_to_highlight : BoardTile = get_node("BoardTile{0}".format([i]))
 		tile_to_highlight.highlight_state = BoardTile.HighlightState.NEUTRAL
 		
@@ -267,7 +263,7 @@ func _on_board_tile_pressed(pressed_tile : BoardTile, can_place_card : bool) -> 
 	if board_state == BoardState.ENEMY_TURN:
 		pass
 	# behaviour depends on state
-	if board_state == BoardState.PLACING_CARDS:
+	elif board_state == BoardState.PLACING_CARDS:
 		print(pressed_tile.name, ' tile pressed placing cards')
 		# see if card contained in tile (to-do: make more elegant)
 		if not can_place_card:
@@ -333,19 +329,38 @@ func _on_board_tile_mouse_exited(hovered_tile : BoardTile):
 	if hovered_tile.highlight_state == BoardTile.HighlightState.HOVER:
 		hovered_tile.highlight_state = BoardTile.HighlightState.CLICKABLE
 	
-func _get_moveable_tile_indicies(tile_idx : int) -> Array[int]:
+func _get_moveable_tile_indicies(tile_idx : int, card_hp_ability : CardData.CardHpAbility) -> Array[int]:
 	var moveable_tile_indicies : Array[int]
-	# calculate adjacent and diagonal squares
-	if tile_idx == 0 or tile_idx % 4 == 0:
-		moveable_tile_indicies.append(tile_idx - 4)
-		moveable_tile_indicies.append(tile_idx - 3)
-	elif (tile_idx + 1) % 4 == 0:
-		moveable_tile_indicies.append(tile_idx - 5)
-		moveable_tile_indicies.append(tile_idx - 4)
+	if card_hp_ability == CardData.CardHpAbility.HOP:
+		# calculate adjacent and diagonal squares
+		# tile on left edge
+		if tile_idx == 0 or tile_idx % 4 == 0:
+			moveable_tile_indicies.append(tile_idx - 8)
+			moveable_tile_indicies.append(tile_idx - 4)
+			moveable_tile_indicies.append(tile_idx - 3)
+		# tile on right edge
+		elif (tile_idx + 1) % 4 == 0:
+			moveable_tile_indicies.append(tile_idx - 8)
+			moveable_tile_indicies.append(tile_idx - 5)
+			moveable_tile_indicies.append(tile_idx - 4)
+		else:
+			moveable_tile_indicies.append(tile_idx - 8)
+			moveable_tile_indicies.append(tile_idx - 5)
+			moveable_tile_indicies.append(tile_idx - 4)
+			moveable_tile_indicies.append(tile_idx - 3)
 	else:
-		moveable_tile_indicies.append(tile_idx - 5)
-		moveable_tile_indicies.append(tile_idx - 4)
-		moveable_tile_indicies.append(tile_idx - 3)
+		# calculate adjacent and diagonal squares
+		if tile_idx == 0 or tile_idx % 4 == 0:
+			moveable_tile_indicies.append(tile_idx - 4)
+			moveable_tile_indicies.append(tile_idx - 3)
+		elif (tile_idx + 1) % 4 == 0:
+			moveable_tile_indicies.append(tile_idx - 5)
+			moveable_tile_indicies.append(tile_idx - 4)
+		else:
+			moveable_tile_indicies.append(tile_idx - 5)
+			moveable_tile_indicies.append(tile_idx - 4)
+			moveable_tile_indicies.append(tile_idx - 3)
+			
 	var i = moveable_tile_indicies.size() - 1
 	while i >= 0:
 		if moveable_tile_indicies[i] < 0 or moveable_tile_indicies[i] > 15:
