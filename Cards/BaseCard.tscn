@@ -1,25 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8n0bs6ul23es"]
+[gd_scene load_steps=12 format=3 uid="uid://b8n0bs6ul23es"]
 
 [ext_resource type="Script" path="res://Cards/Scripts/Card.gd" id="1_i3i6g"]
+[ext_resource type="Resource" uid="uid://b6qa6iym6gvmn" path="res://Cards/Frog.tres" id="3_77rr3"]
 [ext_resource type="Texture2D" uid="uid://c4j1npcxvtnsq" path="res://Cards/Images/AP_frog.png" id="3_evmvl"]
 [ext_resource type="Texture2D" uid="uid://dhehnofjqkdbe" path="res://Cards/Images/HP_frog.png" id="4_ntea1"]
-[ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="5_4l3nn"]
 [ext_resource type="Texture2D" uid="uid://d05dwqsig7c1n" path="res://Cards/Images/AP_bg.png" id="6_1h0vj"]
 [ext_resource type="Material" uid="uid://g7j20dbecimx" path="res://Cards/InverseShader.tres" id="7_syucd"]
 [ext_resource type="Texture2D" uid="uid://c8y2ueofy62oj" path="res://Cards/Images/HP_bg.png" id="8_jfi50"]
-
-[sub_resource type="Resource" id="Resource_q8v4j"]
-script = ExtResource("5_4l3nn")
-card_team = 1
-card_type = 2
-card_ap_ability = 0
-card_hp_ability = 2
-card_statuses = Array[int]([])
-card_name = ""
-card_ap_texture = ExtResource("3_evmvl")
-card_hp_texture = ExtResource("4_ntea1")
-card_ap = 1
-card_hp = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_ljxdw"]
 font_size = 48
@@ -36,7 +23,21 @@ size = Vector2(256, 384)
 [node name="Card" type="Node2D"]
 material = ExtResource("7_syucd")
 script = ExtResource("1_i3i6g")
-card_data = SubResource("Resource_q8v4j")
+card_data = ExtResource("3_77rr3")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = 138.0
+offset_top = -45.0
+offset_right = 277.0
+offset_bottom = 47.0
+
+[node name="Info" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "AP ability: NONE
+HP ability: HOP"
 
 [node name="ApBackground" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -95,7 +96,7 @@ offset_left = 273.0
 offset_top = 1924.0
 offset_right = 300.0
 offset_bottom = 1991.0
-text = "2"
+text = "1"
 label_settings = SubResource("LabelSettings_ljxdw")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
