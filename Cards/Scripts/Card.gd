@@ -73,7 +73,11 @@ func _on_card_data_changed() -> void:
 	elif card_data.card_team == CardData.CARD_TEAM.FRIENDLY:
 		print('changing shader parameter')
 		material.set_shader_parameter("effect_idx",0)
-
+	# label text
+	#var label_text = "AP ability: {0}\nHP ability: {1}".format(str(card_data.CardApAbility.keys()[card_data.card_ap_ability]), str(card_data.CardApAbility.keys()[card_data.card_hp_ability]))
+	#print(card_data.CardHpAbility.keys()[card_data.card_hp_ability])
+	var format_text = "AP ability: %s\nHP ability: %s" % [card_data.CardApAbility.keys()[card_data.card_ap_ability], card_data.CardHpAbility.keys()[card_data.card_hp_ability]]
+	$Panel/Info.text = format_text
 	
 func _on_ap_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseMotion:
@@ -136,6 +140,7 @@ func _kill_card() -> void:
 	self.queue_free()
 	
 func hover(mouse_pos : Vector2) -> void:
+	$Panel.show()
 	# get vector from origin to mouse position
 	var v : Vector2
 	if card_data.card_type == CardData.CARD_TYPE.AP_CARD:
@@ -149,6 +154,7 @@ func hover(mouse_pos : Vector2) -> void:
 	z_index = 1
 	
 func unhover() -> void:
+	$Panel.hide()
 	z_index = 0
 	var tween = get_tree().create_tween()
 	#tween.tween_property(self, "scale", Vector2(1,1), 0.05)

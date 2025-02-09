@@ -100,6 +100,9 @@ func create_damage_callout(callout_text : String) -> void:
 	tween.tween_callback(callout.queue_free)
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseMotion:
+		if tile_state != TileState.EMPTY:
+			get_card().hover(event.global_position)
 	if event is InputEventMouseButton:
 		if event.pressed:
 			tile_pressed.emit(self, can_place_card)
@@ -108,4 +111,6 @@ func _on_area_2d_mouse_entered() -> void:
 	tile_mouse_entered.emit(self)
 
 func _on_area_2d_mouse_exited() -> void:
+	if tile_state != TileState.EMPTY:
+		get_card().unhover()
 	tile_mouse_exited.emit(self)
