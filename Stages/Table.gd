@@ -157,9 +157,11 @@ func _on_board_enemy_card_killed(card_to_bisect : Card) -> void:
 	new_ap_card_data.card_type = CardData.CARD_TYPE.AP_CARD
 	new_ap_card_data.card_ap = card_to_bisect.card_data.card_ap
 	new_ap_card_data.card_ap_texture = card_to_bisect.card_data.card_ap_texture
+	new_ap_card_data.card_ap_ability = card_to_bisect.card_data.card_ap_ability
 	var new_hp_card_data : CardData = CardData.new()
 	new_hp_card_data.card_type = CardData.CARD_TYPE.HP_CARD
 	new_hp_card_data.card_hp = card_to_bisect.card_data.card_hp
+	new_hp_card_data.card_hp_ability = card_to_bisect.card_data.card_hp_ability
 	new_hp_card_data.card_hp_texture = card_to_bisect.card_data.card_hp_texture
 	## fold decks to show we are putting cards in them
 	#$ApDeck.deck_state = Deck.DeckState.FOLDED
