@@ -10,11 +10,11 @@ func _ready() -> void:
 	$ApDeck.deck_state = Deck.DeckState.STACKED
 	$HpDeck.deck_state = Deck.DeckState.STACKED
 	$CompleteCardDeck.deck_state = Deck.DeckState.STACKED
-	$ApDeck.position = $ApDeckLoc.position
-	$HpDeck.position = $HpDeckLoc.position
-	$CompleteCardDeck.position = $CompleteDeckLoc.position
-	$ApDeck.deck_unfold_node = $ApUnfoldLoc
-	$HpDeck.deck_unfold_node = $HpUnfoldLoc
+	#$ApDeck.position = $ApDeckLoc.position
+	#$HpDeck.position = $HpDeckLoc.position
+	#$CompleteCardDeck.position = $CompleteDeckLoc.position
+	#$ApDeck.deck_unfold_node = $ApUnfoldLoc
+	#$HpDeck.deck_unfold_node = $HpUnfoldLoc
 	
 func scene_setup() -> void:
 	$ApDeck.deck_state = Deck.DeckState.UNFOLDED

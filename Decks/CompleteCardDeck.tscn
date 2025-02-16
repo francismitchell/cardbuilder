@@ -1,16 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8rnbfd32l6f8"]
+[gd_scene load_steps=7 format=3 uid="uid://b8rnbfd32l6f8"]
 
-[ext_resource type="Script" path="res://Decks/Scripts/Deck.gd" id="1_u77cj"]
+[ext_resource type="PackedScene" uid="uid://ccnlc875y4ixf" path="res://Decks/BaseDeck.tscn" id="1_bx260"]
 [ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="2_6t34k"]
+[ext_resource type="Shader" path="res://Cards/InverseShader.gdshader" id="2_ey21t"]
 [ext_resource type="Script" path="res://Decks/Scripts/DeckData.gd" id="3_ra28f"]
 
-[sub_resource type="Resource" id="Resource_xmbbp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_16gq8"]
+resource_local_to_scene = true
+shader = ExtResource("2_ey21t")
+shader_parameter/enabled = false
+shader_parameter/brightness = 0.755
+shader_parameter/effect_idx = null
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
+
+[sub_resource type="Resource" id="Resource_lyypq"]
 script = ExtResource("3_ra28f")
-deck_type = 0
+deck_type = 2
 deck_orientation = 1
 deck = Array[ExtResource("2_6t34k")]([])
 
-[node name="CompleteCardDeck" type="TextureRect"]
-script = ExtResource("1_u77cj")
-deck_width_px = 750
-deck_data = SubResource("Resource_xmbbp")
+[node name="CompleteCardDeck" instance=ExtResource("1_bx260")]
+material = SubResource("ShaderMaterial_16gq8")
+centered = false
+offset = Vector2(-128, -192)
+deck_data = SubResource("Resource_lyypq")

@@ -1,29 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8355u067pdh0"]
+[gd_scene load_steps=7 format=3 uid="uid://c8355u067pdh0"]
 
 [ext_resource type="Shader" path="res://Cards/InverseShader.gdshader" id="1_8qxkb"]
-[ext_resource type="Script" path="res://Decks/Scripts/Deck.gd" id="1_c2pqh"]
-[ext_resource type="Texture2D" uid="uid://d05dwqsig7c1n" path="res://Cards/Images/AP_bg.png" id="2_b7mn1"]
+[ext_resource type="PackedScene" uid="uid://ccnlc875y4ixf" path="res://Decks/BaseDeck.tscn" id="1_dvycy"]
 [ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="5_iq1l0"]
 [ext_resource type="Script" path="res://Decks/Scripts/DeckData.gd" id="5_jukmb"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i82l5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgcr5"]
 resource_local_to_scene = true
 shader = ExtResource("1_8qxkb")
 shader_parameter/enabled = false
-shader_parameter/brightness = 0.67
+shader_parameter/brightness = 0.755
+shader_parameter/effect_idx = null
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
-[sub_resource type="Resource" id="Resource_c6dms"]
+[sub_resource type="Resource" id="Resource_mcwyp"]
 script = ExtResource("5_jukmb")
 deck_type = 0
 deck_orientation = 0
 deck = Array[ExtResource("5_iq1l0")]([])
 
-[node name="ApDeck" type="TextureRect"]
-z_index = 8
-material = SubResource("ShaderMaterial_i82l5")
-offset_right = 256.0
-offset_bottom = 192.0
-pivot_offset = Vector2(128, 96)
-texture = ExtResource("2_b7mn1")
-script = ExtResource("1_c2pqh")
-deck_data = SubResource("Resource_c6dms")
+[node name="APDeck" instance=ExtResource("1_dvycy")]
+material = SubResource("ShaderMaterial_dgcr5")
+centered = false
+offset = Vector2(-128, -192)
+deck_data = SubResource("Resource_mcwyp")

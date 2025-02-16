@@ -1,5 +1,6 @@
 @tool
-class_name Deck extends TextureRect
+class_name Deck 
+extends Sprite2D
 
 enum DeckState {STACKED, FOLDED, UNFOLDED}
 
@@ -17,7 +18,6 @@ const DECK_UNFOLD_TIME_PER_CARD = 0.15
 
 var selected_card : Card
 var hovered_card : Card
-var deck_position : Vector2
 var folded : bool = false
 var deck_state : DeckState: set = set_deck_state
 var hovered_cards : Array[Card]
@@ -53,9 +53,6 @@ func set_deck_state(state):
 			for card : Card in get_children():
 				if card.is_queued_for_deletion(): continue
 				var end_position = global_position
-				if deck_data.deck_type == CardData.CARD_TYPE.AP_CARD:
-					end_position.y += size.y * scale.y
-				end_position.x += size.x * scale.x / 2
 				tween.parallel().tween_property(card, "global_position", end_position, DECK_FOLD_TIME_PER_CARD)
 			await tween.finished
 		deck_stacked.emit()
@@ -66,16 +63,9 @@ func set_deck_state(state):
 			var tween = get_tree().create_tween()
 			var end_position = global_position
 			if deck_data.deck_orientation == DeckData.DECK_ORIENTATION.LANDSCAPE:
-				if deck_data.deck_type == CardData.CARD_TYPE.AP_CARD:
-					end_position.y += size.y * scale.y
-				end_position.x += size.x * scale.x / 2
 				end_position.x += 16*i
 			else:
-				if deck_data.deck_type == CardData.CARD_TYPE.AP_CARD:
-					end_position.y += size.y * scale.y
-				end_position.x += size.x * scale.x / 2
 				end_position.y += 16*i #deck_width_px - 16*i
-				#end_position.y -= 130
 			tween.tween_property(card, "global_position", end_position, DECK_FOLD_TIME_PER_CARD)
 			# fold cards simultaneously if previously stacked
 			if previous_state == DeckState.STACKED:
@@ -106,14 +96,10 @@ func set_deck_state(state):
 			var unfold_position = Vector2()
 			# set position dependent on index and deck settings
 			if deck_data.deck_orientation == DeckData.DECK_ORIENTATION.LANDSCAPE:
-				if deck_data.deck_type == CardData.CARD_TYPE.AP_CARD:
-					unfold_position.x = (number_cards-i-1) * card_x_offset
-					if not deck_unfold_node:
-						unfold_position.y += size.y
-				elif deck_data.deck_type == CardData.CARD_TYPE.HP_CARD:
-					unfold_position.x = (number_cards-i-1) * card_x_offset
-				elif deck_data.deck_type == CardData.CARD_TYPE.COMPLETE_CARD:
+				if deck_data.deck_type == CardData.CARD_TYPE.COMPLETE_CARD:
 					unfold_position.x = i * card_x_offset
+				else:
+					unfold_position.x = (number_cards-i-1) * card_x_offset
 			elif deck_data.deck_orientation == DeckData.DECK_ORIENTATION.PORTRAIT:
 				if deck_data.deck_type == CardData.CARD_TYPE.AP_CARD:
 					unfold_position.y = (number_cards - i) * card_x_offset - card_x_offset
@@ -144,22 +130,17 @@ func _notification(what: int) -> void:
 func _ready() -> void:
 	if not deck_data.changed.is_connected(_on_deck_data_changed):
 		deck_data.changed.connect(_on_deck_data_changed)
-	deck_position = global_position
-	# centre cards on deck
-	if deck_data.deck_type == CardData.CARD_TYPE.AP_CARD:
-		deck_position.y += size.y * scale.y
-	deck_position.x += size.x * scale.x / 2
 	for child in get_children():
 		child.free()
 	for card_data in deck_data.deck:
 		if card_data:
-			add_card_node(card_data)
+			_add_card_node(card_data)
 	
 func add_card_data(card_data : CardData) -> void:
 	deck_data.deck.append(card_data)
-	add_card_node(deck_data.deck.back())
+	_add_card_node(deck_data.deck.back())
 	
-func add_card_node(card_data : CardData) -> void:
+func _add_card_node(card_data : CardData) -> void:
 	# instantiate new card
 	var new_card = card_scene.instantiate()
 	new_card.card_data = card_data
@@ -167,7 +148,6 @@ func add_card_node(card_data : CardData) -> void:
 	new_card.card_mouse_entered.connect(_on_card_mouse_entered)
 	new_card.card_mouse_exited.connect(_on_card_mouse_exited)
 	new_card.card_mouse_motion.connect(_on_mouse_motion)
-	new_card.global_position = deck_position
 	add_child(new_card)
 	new_card._on_card_data_changed()
 	new_card.owner = self
@@ -196,8 +176,8 @@ func assign_card_neutral_positions() -> void:
 		if deck_data.deck_orientation == DeckData.DECK_ORIENTATION.LANDSCAPE:
 			if deck_data.deck_type == CardData.CARD_TYPE.AP_CARD:
 				card.neutral_position.x = (number_cards-i-1) * card_x_offset
-				if not deck_unfold_node:
-					card.neutral_position.y += size.y
+				#if not deck_unfold_node:
+					#card.neutral_position.y += size.y
 			elif deck_data.deck_type == CardData.CARD_TYPE.HP_CARD:
 				card.neutral_position.x = (number_cards-i-1) * card_x_offset
 			elif deck_data.deck_type == CardData.CARD_TYPE.COMPLETE_CARD:
@@ -229,14 +209,8 @@ func fold_card(card : Card) -> void:
 	var idx = deck_data.deck.find(card.card_data)
 	var end_position = global_position
 	if deck_data.deck_orientation == DeckData.DECK_ORIENTATION.LANDSCAPE:
-		if deck_data.deck_type == CardData.CARD_TYPE.AP_CARD:
-			end_position.y += size.y * scale.y
-		end_position.x += size.x * scale.x
 		end_position.x -= 16*idx
 	else:
-		if deck_data.deck_type == CardData.CARD_TYPE.AP_CARD:
-			end_position.x += size.y * scale.y
-		end_position.y += size.x * scale.x / 2
 		end_position.y += 16*idx
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "global_position", end_position, DECK_FOLD_TIME_PER_CARD).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
@@ -258,7 +232,7 @@ func _on_deck_data_changed() -> void:
 	for card_data in deck_data.deck:
 		if card_data not in card_node_card_data and card_data != null:
 			# add node
-			add_card_node(card_data)
+			_add_card_node(card_data)
 
 # callback function to deal with card hovering
 func _on_mouse_motion(card: Card, mouse_pos: Vector2) -> void:
@@ -276,40 +250,11 @@ func _on_mouse_motion(card: Card, mouse_pos: Vector2) -> void:
 		hovered_card = closest_card
 		hovered_card.hover(mouse_pos)
 
-	
-			
 func _on_card_mouse_entered(card: Card) -> void:
 	pass
-	#if deck_state != DeckState.UNFOLDED: return
-	#
-	#
-	#
-	#
-	#if hovered_cards.size() > 0:
-		#var tween = get_tree().create_tween()
-		#tween.tween_property(hovered_cards.back(), "scale", Vector2(1,1), 0.2)
-		#hovered_cards.back().z_index = 0
-	#hovered_cards.push_back(card)
-	##print(hovered_cards)
-	#if card != selected_card:
-		#card.z_index = 1
-		#var tween = get_tree().create_tween()
-		#tween.tween_property(card, "scale", Vector2(1.1,1.1), 0.05)
 	
 func _on_card_mouse_exited(card: Node2D) -> void:
 	card.unhover()
-		
-	#if deck_state != DeckState.UNFOLDED: return
-	#hovered_cards.erase(card)
-	#if hovered_cards.size() > 0:
-		#hovered_cards.back().z_index = 1
-		#var tween = get_tree().create_tween()
-		#tween.tween_property(hovered_cards.back(), "scale", Vector2(1.1,1.1), 0.05)
-	##print(hovered_cards)
-	#if card != selected_card:
-		#card.z_index = 0
-		#var tween = get_tree().create_tween()
-		#tween.tween_property(card, "scale", Vector2(1,1), 0.2)
 	
 func _on_card_pressed(card: Card) -> void:
 	if deck_state != DeckState.UNFOLDED: return

@@ -1,10 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://bao61chbhup8k"]
+[gd_scene load_steps=9 format=3 uid="uid://bao61chbhup8k"]
 
 [ext_resource type="Script" path="res://Stages/CardBuilder.gd" id="1_bn3pl"]
 [ext_resource type="PackedScene" uid="uid://c8355u067pdh0" path="res://Decks/APDeck.tscn" id="1_vwk1p"]
 [ext_resource type="PackedScene" uid="uid://kxq2v478o6na" path="res://Decks/HPDeck.tscn" id="2_2hv54"]
 [ext_resource type="Shader" path="res://Cards/InverseShader.gdshader" id="3_hjtvv"]
 [ext_resource type="PackedScene" uid="uid://b8rnbfd32l6f8" path="res://Decks/CompleteCardDeck.tscn" id="4_rm7i0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4by1"]
+resource_local_to_scene = true
+shader = ExtResource("3_hjtvv")
+shader_parameter/enabled = false
+shader_parameter/brightness = 0.755
+shader_parameter/effect_idx = null
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nx8sj"]
 resource_local_to_scene = true
@@ -28,95 +37,71 @@ shader_parameter/RandomOffset = 1.0
 script = ExtResource("1_bn3pl")
 
 [node name="AmalgamateButton" type="Button" parent="."]
-offset_left = 313.0
-offset_top = 317.0
-offset_right = 487.0
-offset_bottom = 348.0
+offset_left = 860.0
+offset_top = 502.0
+offset_right = 1034.0
+offset_bottom = 533.0
 text = "AMALGAMATE CARDS"
 
 [node name="Bisect" type="Button" parent="."]
-offset_left = 493.0
-offset_top = 316.0
-offset_right = 667.0
-offset_bottom = 347.0
+offset_left = 1040.0
+offset_top = 501.0
+offset_right = 1214.0
+offset_bottom = 532.0
 text = "BISECT CARDS"
 
 [node name="ApSpawner" type="Button" parent="."]
-offset_left = 4.0
-offset_top = 614.0
-offset_right = 220.0
-offset_bottom = 645.0
+offset_left = 674.0
+offset_top = 1043.0
+offset_right = 890.0
+offset_bottom = 1074.0
 text = "Add AP card"
 
 [node name="DeckComplete" type="Button" parent="."]
-offset_left = 92.0
-offset_top = 318.0
-offset_right = 308.0
-offset_bottom = 349.0
+offset_left = 639.0
+offset_top = 503.0
+offset_right = 855.0
+offset_bottom = 534.0
 text = "Deck complete!"
 
 [node name="HpSpawner" type="Button" parent="."]
-offset_left = 223.0
-offset_top = 613.0
-offset_right = 439.0
-offset_bottom = 644.0
+offset_left = 893.0
+offset_top = 1042.0
+offset_right = 1109.0
+offset_bottom = 1073.0
 text = "Add HP card"
 
 [node name="CompSpawner" type="Button" parent="."]
-offset_left = 443.0
-offset_top = 612.0
-offset_right = 659.0
-offset_bottom = 643.0
+offset_left = 1113.0
+offset_top = 1041.0
+offset_right = 1329.0
+offset_bottom = 1072.0
 text = "Add Complete card"
 
 [node name="ApAmalLoc" type="Marker2D" parent="."]
-position = Vector2(399, 309)
+position = Vector2(946, 494)
 
 [node name="HpAmalLoc" type="Marker2D" parent="."]
-position = Vector2(400, 356)
+position = Vector2(947, 541)
 
 [node name="CompleteCardDeck" parent="." instance=ExtResource("4_rm7i0")]
-offset_left = 1040.0
-offset_top = 170.0
-offset_right = 1040.0
-offset_bottom = 170.0
+material = SubResource("ShaderMaterial_g4by1")
+position = Vector2(1704, 224)
 scale = Vector2(0.667, 0.667)
-deck_width_px = 450
 
-[node name="ApDeck" parent="." node_paths=PackedStringArray("deck_unfold_node") instance=ExtResource("1_vwk1p")]
+[node name="ApDeck" parent="." instance=ExtResource("1_vwk1p")]
 material = SubResource("ShaderMaterial_nx8sj")
-offset_left = -34.0
-offset_top = -10.0
-offset_right = 222.0
-offset_bottom = 182.0
+position = Vector2(216, 224)
 scale = Vector2(0.667, 0.667)
-deck_unfold_node = NodePath("../ApUnfoldLoc")
-deck_width_px = 500
+DECK_CARD_MAX_SEPARATION = 192
+deck_width_px = 1800
 
-[node name="HpDeck" parent="." node_paths=PackedStringArray("deck_unfold_node") instance=ExtResource("2_2hv54")]
+[node name="HpDeck" parent="." instance=ExtResource("2_2hv54")]
 material = SubResource("ShaderMaterial_03yc0")
-offset_left = -34.0
-offset_top = 454.0
-offset_right = 222.0
-offset_bottom = 646.0
+position = Vector2(216, 864)
 scale = Vector2(0.667, 0.667)
-deck_unfold_node = NodePath("../HpUnfoldLoc")
-deck_width_px = 500
-
-[node name="ApUnfoldLoc" type="Marker2D" parent="."]
-position = Vector2(325, 150)
-
-[node name="HpUnfoldLoc" type="Marker2D" parent="."]
-position = Vector2(325, 485)
-
-[node name="ApDeckLoc" type="Marker2D" parent="."]
-position = Vector2(-34, -10)
-
-[node name="HpDeckLoc" type="Marker2D" parent="."]
-position = Vector2(-34, 454)
-
-[node name="CompleteDeckLoc" type="Marker2D" parent="."]
-position = Vector2(1047, 150)
+DECK_CARD_MAX_SEPARATION = 192
+deck_width_px = 1800
 
 [connection signal="pressed" from="AmalgamateButton" to="." method="_on_amalgamate_pressed"]
 [connection signal="pressed" from="Bisect" to="." method="_on_bisect_pressed"]
