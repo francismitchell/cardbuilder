@@ -72,7 +72,7 @@ func _on_card_data_changed() -> void:
 		material.set_shader_parameter("effect_idx",1)
 	elif card_data.card_team == CardData.CARD_TEAM.FRIENDLY:
 		print('changing shader parameter')
-		material.set_shader_parameter("effect_idx",0)
+		material.set_shader_parameter("effect_idx",2)
 	# label text
 	#var label_text = "AP ability: {0}\nHP ability: {1}".format(str(card_data.CardApAbility.keys()[card_data.card_ap_ability]), str(card_data.CardApAbility.keys()[card_data.card_hp_ability]))
 	#print(card_data.CardHpAbility.keys()[card_data.card_hp_ability])
@@ -145,13 +145,20 @@ func hover(mouse_pos : Vector2) -> void:
 	var v : Vector2
 	if card_data.card_type == CardData.CARD_TYPE.AP_CARD:
 		v = mouse_pos - $ApBackground.global_position
+		# adjust shader
+		material.set("shader_parameter/shift",0.01*(v - $ApBackground.texture.get_size() / 2.0).length())
 	elif card_data.card_type == CardData.CARD_TYPE.HP_CARD:
 		v = mouse_pos - $HpBackground.global_position
+		# adjust shader
+		material.set("shader_parameter/shift",0.01*(v - $HpBackground.texture.get_size() / 2.0).length())
 	elif card_data.card_type == CardData.CARD_TYPE.COMPLETE_CARD:
 		v = mouse_pos - $Area2D.global_position
+		# adjust shader
+		material.set("shader_parameter/shift",0.01*(v - $ApBackground.texture.get_size() / 2.0).length())
 	transform.x = base_transform.x + SHEAR_SCALE * v
 	transform.y = base_transform.y + SHEAR_SCALE * v
 	z_index = 1
+	
 	
 func unhover() -> void:
 	$Panel.hide()
