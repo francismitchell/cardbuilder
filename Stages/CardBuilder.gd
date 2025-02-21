@@ -47,7 +47,7 @@ func _on_card_selected(card: Node2D) -> void:
 		tween.tween_property(card, "global_position", $HpAmalLoc.position, 0.5).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	elif card.card_data.card_type == CardData.CARD_TYPE.COMPLETE_CARD:
 		var tween = get_tree().create_tween()
-		tween.tween_property(card, "global_position", $ApAmalLoc.position, 0.5).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+		tween.tween_property(card, "global_position", $ApAmalLoc.position + Vector2(0.0, 100.0), 0.5).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 
 func _on_amalgamate_pressed() -> void:
 	# check if two cards are selected
@@ -73,6 +73,8 @@ func _on_amalgamate_pressed() -> void:
 
 func _on_bisect_pressed() -> void:
 	if not $CompleteCardDeck.selected_card: return
+	$CompleteCardDeck.selected_card.split_card()
+	await $CompleteCardDeck.selected_card.card_split
 	# create ap and hp cards from complete card
 	var new_ap_card_data : CardData = CardData.new()
 	new_ap_card_data.card_type = CardData.CARD_TYPE.AP_CARD

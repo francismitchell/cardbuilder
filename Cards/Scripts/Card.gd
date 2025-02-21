@@ -2,6 +2,13 @@
 class_name Card
 extends Node2D
 
+@export var split_cards : bool = false:
+	set(value):
+		split_card()
+@export var unsplit_cards : bool = false:
+	set(value):
+		unsplit_card()
+
 const HP_CARD_OFFSET_PX : int = 192
 const SHEAR_SCALE : float = 0.0002
 
@@ -10,6 +17,8 @@ signal card_mouse_entered
 signal card_mouse_exited
 signal card_killed
 signal card_mouse_motion
+signal card_split
+signal card_unsplit
 
 var neutral_position : Vector2
 var card_hovered : bool = false
@@ -167,3 +176,25 @@ func unhover() -> void:
 	#tween.tween_property(self, "scale", Vector2(1,1), 0.05)
 	tween.parallel().tween_property(self, "transform:x", base_transform.x, 0.05)
 	tween.parallel().tween_property(self, "transform:y", base_transform.y, 0.05)
+	
+func split_card() -> void:
+	if card_data.card_type != card_data.CARD_TYPE.COMPLETE_CARD: return
+	var tween = get_tree().create_tween()
+	tween.parallel().tween_property($ApBackground, "position:y", $ApBackground.position.y - 100, 0.5).set_trans(Tween.TRANS_BOUNCE)
+	tween.parallel().tween_property($HpBackground, "position:y", $HpBackground.position.y + 100, 0.5).set_trans(Tween.TRANS_BOUNCE)
+	for child in get_children():
+		if child is Viscera:
+			tween.parallel().tween_property(child, "stretch_amount", 100.0, 0.5).set_trans(Tween.TRANS_BOUNCE)
+	await tween.finished
+	card_split.emit()
+
+
+func unsplit_card() -> void:
+	var tween = get_tree().create_tween()
+	tween.parallel().tween_property($ApBackground, "position:y", $ApBackground.position.y + 100, 0.2).set_trans(Tween.TRANS_SPRING)
+	tween.parallel().tween_property($HpBackground, "position:y", $HpBackground.position.y - 100, 0.2).set_trans(Tween.TRANS_SPRING)
+	for child in get_children():
+		if child is Viscera:
+			tween.parallel().tween_property(child, "stretch_amount", 0.0, 0.2).set_trans(Tween.TRANS_SPRING)
+	await tween.finished
+	card_unsplit.emit()
