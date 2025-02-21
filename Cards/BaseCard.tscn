@@ -54,8 +54,6 @@ size = Vector2(256, 384)
 [node name="Card" type="Node2D"]
 material = ExtResource("7_syucd")
 script = ExtResource("1_i3i6g")
-split_cards = null
-unsplit_cards = null
 card_data = ExtResource("3_77rr3")
 
 [node name="Panel" type="Panel" parent="."]
