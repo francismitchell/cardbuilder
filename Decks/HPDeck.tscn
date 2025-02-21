@@ -14,6 +14,7 @@ shader_parameter/brightness = 0.755
 shader_parameter/effect_idx = null
 shader_parameter/Strength = 5.0
 shader_parameter/RandomOffset = 1.0
+shader_parameter/shift = 0.0
 
 [sub_resource type="Resource" id="Resource_uetp3"]
 script = ExtResource("5_2xh7o")

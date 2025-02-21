@@ -12,6 +12,7 @@ shader_parameter/brightness = 0.755
 shader_parameter/effect_idx = null
 shader_parameter/Strength = 5.0
 shader_parameter/RandomOffset = 1.0
+shader_parameter/shift = 0.0
 
 [node name="BaseDeck" type="Sprite2D"]
 material = SubResource("ShaderMaterial_oja8g")
