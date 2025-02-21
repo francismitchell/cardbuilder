@@ -242,7 +242,7 @@ func _on_mouse_motion(card: Card, mouse_pos: Vector2) -> void:
 	for child : Card in get_children():
 		if child.global_position.distance_squared_to(mouse_pos) < closest_card.global_position.distance_squared_to(mouse_pos):
 			closest_card = child
-	if hovered_card and hovered_card != closest_card:
+	if hovered_card != null and hovered_card != closest_card:
 		hovered_card.unhover()
 		hovered_card = closest_card
 		hovered_card.hover(mouse_pos)
