@@ -24,10 +24,9 @@ func stretch_viscera(amount) -> void:
 			y_offset = -amount * (i-num_points/2) / (num_points/2)
 		points[i].y = y_offset
 	for i in range(0, width_curve.get_point_count()):
-		width_curve.set_point_value(i,maxf(0.0, randf_range(-0.1, 0.3) + amount / MAX_STRETCH * (4*(0.25*i-0.5)**2)+1-amount/MAX_STRETCH))
+		width_curve.set_point_value(i,maxf(0.0,  amount / MAX_STRETCH * (4*(0.25*i-0.5)**2)+1-amount/MAX_STRETCH))
 	#$Line2D.width_curve.set_point_value(1, 0.9 - 0.5*t/freq)
 	material.set("shader_parameter/Strength", 1.5*amount / MAX_STRETCH)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

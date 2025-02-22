@@ -1,43 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://b8n0bs6ul23es"]
+[gd_scene load_steps=13 format=3 uid="uid://b8n0bs6ul23es"]
 
 [ext_resource type="Script" path="res://Cards/Scripts/Card.gd" id="1_i3i6g"]
 [ext_resource type="Resource" uid="uid://b6qa6iym6gvmn" path="res://Cards/Frog.tres" id="3_77rr3"]
 [ext_resource type="Texture2D" uid="uid://c4j1npcxvtnsq" path="res://Cards/Images/AP_frog.png" id="3_evmvl"]
-[ext_resource type="Script" path="res://Cards/Scripts/viscera.gd" id="4_5hjc8"]
 [ext_resource type="Texture2D" uid="uid://dhehnofjqkdbe" path="res://Cards/Images/HP_frog.png" id="4_ntea1"]
-[ext_resource type="Shader" path="res://Cards/viscera.gdshader" id="5_24wxd"]
+[ext_resource type="PackedScene" uid="uid://c1iwnqkqae7tl" path="res://Cards/viscera.tscn" id="4_o6amx"]
 [ext_resource type="Texture2D" uid="uid://d05dwqsig7c1n" path="res://Cards/Images/AP_bg.png" id="6_1h0vj"]
 [ext_resource type="Material" uid="uid://g7j20dbecimx" path="res://Cards/InverseShader.tres" id="7_syucd"]
 [ext_resource type="Texture2D" uid="uid://c8y2ueofy62oj" path="res://Cards/Images/HP_bg.png" id="8_jfi50"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j4o4e"]
-shader = ExtResource("5_24wxd")
-shader_parameter/Strength = 0.0
-shader_parameter/RandomOffset = 1.97
-
-[sub_resource type="Curve" id="Curve_pwwss"]
-_data = [Vector2(0, 1.15485), 0.0, -0.134101, 0, 1, Vector2(0.25, 1.12132), -0.134101, -0.414266, 1, 1, Vector2(0.50001, 1.01775), -0.414266, 0.762212, 1, 1, Vector2(0.75, 1.2083), 0.762212, -0.574958, 1, 1, Vector2(1, 1.06456), -0.574958, 0.0, 1, 0]
-point_count = 5
-
-[sub_resource type="Curve" id="Curve_exow5"]
-_data = [Vector2(0, 1.15674), 0.0, 0.439051, 0, 1, Vector2(0.25, 1.26651), 0.439051, 0.0180337, 1, 1, Vector2(0.50001, 1.27102), 0.0180337, -0.859002, 1, 1, Vector2(0.75, 1.05627), -0.859002, 0.0374351, 1, 1, Vector2(1, 1.06563), 0.0374351, 0.0, 1, 0]
-point_count = 5
-
-[sub_resource type="Curve" id="Curve_tsk3y"]
-_data = [Vector2(0, 1.09453), 0.0, 0.349758, 0, 1, Vector2(0.25, 1.18197), 0.349758, 0.0268162, 1, 1, Vector2(0.50001, 1.18867), 0.0268162, -0.0730329, 1, 1, Vector2(0.75, 1.17041), -0.0730329, -0.977945, 1, 1, Vector2(1, 0.925926), -0.977945, 0.0, 1, 0]
-point_count = 5
-
-[sub_resource type="Curve" id="Curve_c5qfi"]
-_data = [Vector2(0, 0.921637), 0.0, 0.185385, 0, 1, Vector2(0.25, 0.967984), 0.185385, 1.09367, 1, 1, Vector2(0.50001, 1.24141), 1.09367, -1.34808, 1, 1, Vector2(0.75, 0.904405), -1.34808, 1.57763, 1, 1, Vector2(1, 1.29881), 1.57763, 0.0, 1, 0]
-point_count = 5
-
-[sub_resource type="Curve" id="Curve_ugite"]
-_data = [Vector2(0, 1.10641), 0.0, -0.786003, 0, 1, Vector2(0.25, 0.909906), -0.786003, 1.42736, 1, 1, Vector2(0.50001, 1.26676), 1.42736, -0.983142, 1, 1, Vector2(0.75, 1.02099), -0.983142, 0.455082, 1, 1, Vector2(1, 1.13476), 0.455082, 0.0, 1, 0]
-point_count = 5
-
-[sub_resource type="Curve" id="Curve_l5x1b"]
-_data = [Vector2(0, 1.14589), 0.0, -0.192157, 0, 1, Vector2(0.25, 1.09785), -0.192157, 0.067959, 1, 1, Vector2(0.50001, 1.11484), 0.067959, -0.0495592, 1, 1, Vector2(0.75, 1.10245), -0.0495592, 0.73933, 1, 1, Vector2(1, 1.28729), 0.73933, 0.0, 1, 0]
-point_count = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_ljxdw"]
 font_size = 48
@@ -71,64 +41,68 @@ offset_bottom = 23.0
 text = "AP ability: NONE
 HP ability: HOP"
 
-[node name="Viscera" type="Line2D" parent="."]
-material = SubResource("ShaderMaterial_j4o4e")
-points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-width = 20.0
-width_curve = SubResource("Curve_pwwss")
-default_color = Color(0.840562, 0.374343, 0.466143, 1)
-texture_mode = 2
-script = ExtResource("4_5hjc8")
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-81, -100)
+emitting = false
+amount = 4
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.21
+direction = Vector2(-0.5, 1)
+spread = 46.81
+initial_velocity_min = 80.81
+initial_velocity_max = 161.61
+scale_amount_min = 7.11
+scale_amount_max = 10.21
+color = Color(0.839216, 0.372549, 0.466667, 1)
 
-[node name="Viscera2" type="Line2D" parent="."]
-material = SubResource("ShaderMaterial_j4o4e")
-position = Vector2(102, 0)
-points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-width = 20.0
-width_curve = SubResource("Curve_exow5")
-default_color = Color(0.840562, 0.374343, 0.466143, 1)
-texture_mode = 2
-script = ExtResource("4_5hjc8")
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(77, -100)
+emitting = false
+amount = 4
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.08
+direction = Vector2(0.5, 1)
+spread = 46.82
+initial_velocity_min = 70.71
+initial_velocity_max = 100.61
+scale_amount_min = 7.11
+scale_amount_max = 10.21
+color = Color(0.839216, 0.372549, 0.466667, 1)
 
-[node name="Viscera3" type="Line2D" parent="."]
-material = SubResource("ShaderMaterial_j4o4e")
-position = Vector2(85, 0)
+[node name="Viscera" parent="." instance=ExtResource("4_o6amx")]
 points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-width = 35.02
-width_curve = SubResource("Curve_tsk3y")
-default_color = Color(0.840562, 0.374343, 0.466143, 1)
-texture_mode = 2
-script = ExtResource("4_5hjc8")
+stretch_amount = 0.0
 
-[node name="Viscera4" type="Line2D" parent="."]
-material = SubResource("ShaderMaterial_j4o4e")
-position = Vector2(-46, 0)
+[node name="Viscera7" parent="." instance=ExtResource("4_o6amx")]
+position = Vector2(80, 0)
 points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-width = 4.355
-width_curve = SubResource("Curve_c5qfi")
-default_color = Color(0.840562, 0.374343, 0.466143, 1)
-texture_mode = 2
-script = ExtResource("4_5hjc8")
+width = 35.0
+stretch_amount = 0.0
 
-[node name="Viscera6" type="Line2D" parent="."]
-material = SubResource("ShaderMaterial_j4o4e")
-position = Vector2(-82, 0)
+[node name="Viscera8" parent="." instance=ExtResource("4_o6amx")]
+position = Vector2(114, 0)
 points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-width = 13.145
-width_curve = SubResource("Curve_ugite")
-default_color = Color(0.840562, 0.374343, 0.466143, 1)
-texture_mode = 2
-script = ExtResource("4_5hjc8")
+stretch_amount = 0.0
 
-[node name="Viscera5" type="Line2D" parent="."]
-material = SubResource("ShaderMaterial_j4o4e")
-position = Vector2(-112, 0)
+[node name="Viscera9" parent="." instance=ExtResource("4_o6amx")]
+position = Vector2(-54, 0)
 points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-width = 26.08
-width_curve = SubResource("Curve_l5x1b")
-default_color = Color(0.840562, 0.374343, 0.466143, 1)
-texture_mode = 2
-script = ExtResource("4_5hjc8")
+width = 5.0
+stretch_amount = 0.0
+
+[node name="Viscera10" parent="." instance=ExtResource("4_o6amx")]
+position = Vector2(-84, 0)
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+width = 13.0
+stretch_amount = 0.0
+
+[node name="Viscera11" parent="." instance=ExtResource("4_o6amx")]
+position = Vector2(-110, 0)
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+width = 25.0
+stretch_amount = 0.0
 
 [node name="ApBackground" type="Sprite2D" parent="."]
 use_parent_material = true

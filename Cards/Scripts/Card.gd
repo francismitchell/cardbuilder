@@ -185,6 +185,8 @@ func split_card() -> void:
 	for child in get_children():
 		if child is Viscera:
 			tween.parallel().tween_property(child, "stretch_amount", 100.0, 0.5).set_trans(Tween.TRANS_BOUNCE)
+	$CPUParticles2D.emitting = true
+	$CPUParticles2D2.emitting = true
 	await tween.finished
 	card_split.emit()
 
@@ -198,3 +200,8 @@ func unsplit_card() -> void:
 			tween.parallel().tween_property(child, "stretch_amount", 0.0, 0.2).set_trans(Tween.TRANS_SPRING)
 	await tween.finished
 	card_unsplit.emit()
+	
+func prepare_for_amalgamation() -> void:
+	if card_data.card_type != card_data.CARD_TYPE.COMPLETE_CARD: return
+	$ApBackground.position.y -= 100
+	$HpBackground.position.y += 100

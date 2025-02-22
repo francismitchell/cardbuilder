@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1iwnqkqae7tl"]
+
+[ext_resource type="Shader" path="res://Cards/viscera.gdshader" id="1_lb83c"]
+[ext_resource type="Script" path="res://Cards/Scripts/viscera.gd" id="2_b3mic"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j4o4e"]
+shader = ExtResource("1_lb83c")
+shader_parameter/Strength = 0.0
+shader_parameter/RandomOffset = 1.97
+
+[sub_resource type="Curve" id="Curve_pwwss"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(0.25, 1), 0.0, 0.0, 1, 1, Vector2(0.50001, 1), 0.0, 0.0, 1, 1, Vector2(0.75, 1), 0.0, 0.0, 1, 1, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 5
+
+[node name="Viscera" type="Line2D"]
+material = SubResource("ShaderMaterial_j4o4e")
+points = PackedVector2Array(0, 100, 0, 85.7143, 0, 71.4286, 0, 57.1429, 0, 42.8571, 0, 28.5714, 0, 14.2857, 0, 0, 0, -14.2857, 0, -28.5714, 0, -42.8571, 0, -57.1429, 0, -71.4286, 0, -85.7143, 0, -100)
+width = 20.0
+width_curve = SubResource("Curve_pwwss")
+default_color = Color(0.840562, 0.374343, 0.466143, 1)
+texture_mode = 2
+script = ExtResource("2_b3mic")
+stretch_amount = 100.0
