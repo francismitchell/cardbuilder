@@ -31,10 +31,14 @@ func load_card_builder() -> void:
 		card_builder.get_node('CompleteCardDeck').free()
 		card_builder.get_node('ApDeck').free()
 		card_builder.get_node('HpDeck').free()
+		# free captured decks as we don't want to carry these over to the card builder
+		table.get_node('CapturedApDeck').free()
+		table.get_node('CapturedHpDeck').free()
 		# free nodes from table scene
 		for child in table.get_children():
 			if child is Deck:
 				child.reparent(card_builder)
+
 		table.queue_free()
 	add_child(card_builder)
 	card_builder.scene_setup()
@@ -43,6 +47,7 @@ func load_table() -> void:
 	table = table_scene.instantiate()
 	table.player_win.connect(_on_player_win)
 	# free deck which we will replace with the one carried over
+	var comp_deck_pos_x = table.get_node('CompleteCardDeck').global_position.x
 	table.get_node('CompleteCardDeck').free()
 	# free nodes from card builder scene
 	for child in card_builder.get_children():
@@ -52,7 +57,7 @@ func load_table() -> void:
 	# get rid of cardbuilder
 	card_builder.queue_free()
 	add_child(table)
-	table.scene_setup()
+	table.scene_setup(comp_deck_pos_x)
 	
 func _on_deck_complete() -> void:
 	await card_builder.scene_shutdown()

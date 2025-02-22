@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cmjmgy3sry57w"]
+[gd_scene load_steps=25 format=3 uid="uid://cmjmgy3sry57w"]
 
 [ext_resource type="PackedScene" uid="uid://ok417g8wclu8" path="res://Board/Board.tscn" id="1_58k22"]
 [ext_resource type="Script" path="res://Stages/Table.gd" id="1_x3mii"]
@@ -55,6 +55,16 @@ card_hp = 2
 script = ExtResource("6_saohg")
 board = Array[ExtResource("4_fpa5h")]([null, null, null, null, null, null, null, null, null, SubResource("Resource_ug2xq"), SubResource("Resource_mdar2"), SubResource("Resource_hqdlx"), null, null, null, null])
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6btiu"]
+resource_local_to_scene = true
+shader = ExtResource("10_3uxp5")
+shader_parameter/enabled = false
+shader_parameter/brightness = 0.755
+shader_parameter/effect_idx = null
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
+shader_parameter/shift = 0.0
+
 [sub_resource type="Resource" id="Resource_ikevv"]
 script = ExtResource("4_fpa5h")
 card_team = 0
@@ -100,21 +110,6 @@ deck_type = 0
 deck_orientation = 1
 deck = Array[ExtResource("4_fpa5h")]([SubResource("Resource_ikevv"), SubResource("Resource_7a6bl"), SubResource("Resource_p6w20")])
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xddqy"]
-resource_local_to_scene = true
-shader = ExtResource("10_3uxp5")
-shader_parameter/enabled = false
-shader_parameter/brightness = 0.67
-shader_parameter/effect_idx = null
-shader_parameter/Strength = 5.0
-shader_parameter/RandomOffset = 1.0
-
-[sub_resource type="Resource" id="Resource_khodq"]
-script = ExtResource("7_6con2")
-deck_type = 0
-deck_orientation = 0
-deck = Array[ExtResource("4_fpa5h")]([])
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wt1n"]
 resource_local_to_scene = true
 shader = ExtResource("10_3uxp5")
@@ -123,58 +118,73 @@ shader_parameter/brightness = 0.755
 shader_parameter/effect_idx = null
 shader_parameter/Strength = 5.0
 shader_parameter/RandomOffset = 1.0
+shader_parameter/shift = 0.0
 
 [sub_resource type="Resource" id="Resource_fe2k3"]
 script = ExtResource("7_6con2")
 deck_type = 1
-deck_orientation = 0
+deck_orientation = 1
+deck = Array[ExtResource("4_fpa5h")]([])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0m78x"]
+resource_local_to_scene = true
+shader = ExtResource("10_3uxp5")
+shader_parameter/enabled = false
+shader_parameter/brightness = 0.755
+shader_parameter/effect_idx = null
+shader_parameter/Strength = 5.0
+shader_parameter/RandomOffset = 1.0
+shader_parameter/shift = 0.0
+
+[sub_resource type="Resource" id="Resource_fh6sj"]
+script = ExtResource("7_6con2")
+deck_type = 0
+deck_orientation = 1
 deck = Array[ExtResource("4_fpa5h")]([])
 
 [node name="Table" type="Node2D"]
 script = ExtResource("1_x3mii")
 
 [node name="Board" parent="." instance=ExtResource("1_58k22")]
-position = Vector2(560, 155)
-scale = Vector2(0.5, 0.5)
+position = Vector2(960, 540)
+scale = Vector2(0.46, 0.46)
 board_data = SubResource("Resource_fjjtc")
 
 [node name="PlayButton" type="Button" parent="."]
-offset_left = 953.0
-offset_top = 52.0
-offset_right = 1073.0
-offset_bottom = 83.0
+offset_left = 1152.0
+offset_top = 24.0
+offset_right = 1272.0
+offset_bottom = 55.0
 text = "Play"
 
 [node name="EndTurnButton" type="Button" parent="."]
-offset_left = 953.0
-offset_top = 91.0
-offset_right = 1073.0
-offset_bottom = 122.0
+offset_left = 1288.0
+offset_top = 24.0
+offset_right = 1408.0
+offset_bottom = 55.0
 text = "End turn"
 
 [node name="EnemyHealth" type="ProgressBar" parent="."]
-offset_left = 782.0
-offset_top = 7.0
-offset_right = 1106.0
-offset_bottom = 25.0
+offset_left = 800.0
+offset_top = 32.0
+offset_right = 1124.0
+offset_bottom = 50.0
 max_value = 10.0
 value = 10.0
 show_percentage = false
 
 [node name="PlayerHealth" type="ProgressBar" parent="."]
-offset_left = 782.0
-offset_top = 1055.0
-offset_right = 1106.0
-offset_bottom = 1073.0
+offset_left = 800.0
+offset_top = 1032.0
+offset_right = 1124.0
+offset_bottom = 1050.0
 max_value = 10.0
 value = 10.0
 show_percentage = false
 
 [node name="CompleteCardDeck" parent="." instance=ExtResource("3_71fig")]
-offset_left = 100.0
-offset_top = 131.0
-offset_right = 100.0
-offset_bottom = 131.0
+material = SubResource("ShaderMaterial_6btiu")
+position = Vector2(216, 224)
 scale = Vector2(0.6, 0.6)
 deck_width_px = 950
 deck_data = SubResource("Resource_43bue")
@@ -186,35 +196,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CapturedApDeck" parent="." instance=ExtResource("9_s6iia")]
-material = SubResource("ShaderMaterial_xddqy")
-offset_left = 854.0
-offset_top = 164.0
-offset_right = 1110.0
-offset_bottom = 356.0
-scale = Vector2(0.6, 0.6)
-texture = null
-DECK_CARD_MAX_SEPARATION = 999
-deck_width_px = 800
-deck_data = SubResource("Resource_khodq")
-
 [node name="CapturedHpDeck" parent="." instance=ExtResource("11_gkuni")]
 material = SubResource("ShaderMaterial_7wt1n")
-offset_left = 854.0
-offset_top = 304.0
-offset_right = 1110.0
-offset_bottom = 496.0
+position = Vector2(1792, 72)
 scale = Vector2(0.6, 0.6)
-texture = null
 DECK_CARD_MAX_SEPARATION = 999
-deck_width_px = 800
 deck_data = SubResource("Resource_fe2k3")
 
-[node name="ApUnfoldLoc" type="Marker2D" parent="."]
-position = Vector2(300, 150)
-
-[node name="HpUnfoldLoc" type="Marker2D" parent="."]
-position = Vector2(300, 485)
+[node name="CapturedApDeck" parent="." instance=ExtResource("9_s6iia")]
+material = SubResource("ShaderMaterial_0m78x")
+position = Vector2(1568, 184)
+scale = Vector2(0.6, 0.6)
+DECK_CARD_MAX_SEPARATION = 999
+deck_data = SubResource("Resource_fh6sj")
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]

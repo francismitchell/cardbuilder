@@ -1,12 +1,9 @@
-[gd_resource type="Resource" script_class="BoardData" load_steps=7 format=3 uid="uid://4g7l6grkbqo1"]
+[gd_resource type="Resource" script_class="BoardData" load_steps=4 format=3 uid="uid://4g7l6grkbqo1"]
 
 [ext_resource type="Script" path="res://Cards/Scripts/CardData.gd" id="1_7bt3m"]
-[ext_resource type="Resource" uid="uid://dtn1yocr00x6b" path="res://Cards/HedgehogEnemy.tres" id="2_mskvc"]
-[ext_resource type="Resource" uid="uid://cter0jki0o1ss" path="res://Cards/AdderEnemy.tres" id="3_g8svl"]
-[ext_resource type="Resource" uid="uid://b6qa6iym6gvmn" path="res://Cards/Frog.tres" id="4_j7xx7"]
 [ext_resource type="Script" path="res://Board/Scripts/BoardData.gd" id="4_rrflk"]
 [ext_resource type="Resource" uid="uid://ebalwp4rytfk" path="res://Cards/FrogEnemy.tres" id="5_ivtfd"]
 
 [resource]
 script = ExtResource("4_rrflk")
-board = Array[ExtResource("1_7bt3m")]([ExtResource("2_mskvc"), null, ExtResource("2_mskvc"), null, null, null, ExtResource("2_mskvc"), ExtResource("3_g8svl"), ExtResource("2_mskvc"), ExtResource("4_j7xx7"), ExtResource("5_ivtfd"), ExtResource("5_ivtfd"), null, null, null, null])
+board = Array[ExtResource("1_7bt3m")]([null, null, null, null, null, null, null, null, ExtResource("5_ivtfd"), ExtResource("5_ivtfd"), ExtResource("5_ivtfd"), ExtResource("5_ivtfd"), null, null, null, null])

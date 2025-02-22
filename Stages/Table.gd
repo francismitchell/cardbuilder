@@ -44,23 +44,25 @@ func _ready() -> void:
 	if not $CapturedHpDeck.card_selected.is_connected(_on_captured_hp_deck_card_selected):
 		$CapturedHpDeck.card_selected.connect(_on_captured_hp_deck_card_selected)
 	
-func scene_setup() -> void:
+func scene_setup(comp_deck_pos_x) -> void:
 	# move board off screen initially
 	var board_final_position_x : int = $Board.global_position.x 
-	$Board.global_position.x = 1215
-	$ApDeck.deck_unfold_node = $ApUnfoldLoc
-	$HpDeck.deck_unfold_node = $HpUnfoldLoc
+	$Board.global_position.x += 1488 # distance comp card deck has to travel between scenes
 	var tween = get_tree().create_tween()
-	tween.parallel().tween_property($CompleteCardDeck, "global_position:x", 125, 0.5)
+	tween.parallel().tween_property($CompleteCardDeck, "global_position:x", comp_deck_pos_x, 0.5)
 	tween.parallel().tween_property($Board, "global_position:x", board_final_position_x, 0.5)
 	await tween.finished
 	$CompleteCardDeck.deck_state = Deck.DeckState.UNFOLDED
 	$CapturedApDeck.clear_deck()
 	$CapturedHpDeck.clear_deck()
+	$CapturedApDeck.deck_data.deck_orientation = DeckData.DECK_ORIENTATION.PORTRAIT
+	$CapturedHpDeck.deck_data.deck_orientation = DeckData.DECK_ORIENTATION.PORTRAIT
 
 	
 func _on_captured_ap_deck_card_selected(card : Card) -> void:
-	$ApDeck.add_card_data(card.card_data)
+	var new_ap_card_data = card.card_data
+	new_ap_card_data.card_team = CardData.CARD_TEAM.FRIENDLY
+	$ApDeck.add_card_data(new_ap_card_data)
 	$ApDeck.get_children().back().global_position = card.global_position
 	$CapturedApDeck.erase_selected_card()
 	$ApDeck.deck_state = Deck.DeckState.UNFOLDED
@@ -69,7 +71,9 @@ func _on_captured_ap_deck_card_selected(card : Card) -> void:
 		change_scene()
 	
 func _on_captured_hp_deck_card_selected(card : Card) -> void:
-	$HpDeck.add_card_data(card.card_data)
+	var new_hp_card_data = card.card_data
+	new_hp_card_data.card_team = CardData.CARD_TEAM.FRIENDLY
+	$HpDeck.add_card_data(new_hp_card_data)
 	$HpDeck.get_children().back().global_position = card.global_position
 	$CapturedHpDeck.erase_selected_card()
 	$HpDeck.deck_state = Deck.DeckState.UNFOLDED
@@ -86,22 +90,24 @@ func _on_player_win() -> void:
 	# show captured cards 
 	$CapturedApDeck.deck_state = Deck.DeckState.STACKED
 	$CapturedHpDeck.deck_state = Deck.DeckState.STACKED
+	$CapturedApDeck.deck_data.deck_orientation = DeckData.DECK_ORIENTATION.LANDSCAPE
+	$CapturedHpDeck.deck_data.deck_orientation = DeckData.DECK_ORIENTATION.LANDSCAPE
 	await $CapturedHpDeck.deck_stacked
 	await get_tree().create_timer(0.5).timeout
 	var tween = get_tree().create_tween()
-	$ApDeck.global_position.x = 950
-	$HpDeck.global_position.x = 950
-	tween.parallel().tween_property($ApDeck,"global_position:y",$ApDeck.global_position.y+500,0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property($HpDeck,"global_position:y",$HpDeck.global_position.y-500,0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	#tween.parallel().tween_property($ApDeck,"global_position:x",200,0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	#tween.parallel().tween_property($HpDeck,"global_position:x",200,0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property($CapturedApDeck, "global_position:x", 300, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property($CapturedHpDeck, "global_position:x", 300, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	#$ApDeck.global_position.x = 950
+	#$HpDeck.global_position.x = 950
+	$ApDeck.deck_width_px = 960
+	$HpDeck.deck_width_px = 960
+	tween.parallel().tween_property($ApDeck,"global_position",Vector2(1920.0/2.0-$ApDeck.deck_width_px/4.0,224),0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property($HpDeck,"global_position",Vector2(1920.0/2.0-$HpDeck.deck_width_px/4.0,856),0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property($CapturedApDeck, "global_position", Vector2((1920.0/2.0)-$CapturedApDeck.deck_width_px/4.0,1080.0/2.0 - 100.0), 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property($CapturedHpDeck, "global_position", Vector2((1920.0/2.0)-$CapturedHpDeck.deck_width_px/4.0,1080.0/2.0 + 100.0), 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	await tween.finished
 	$CapturedApDeck.deck_state = Deck.DeckState.UNFOLDED
 	$CapturedHpDeck.deck_state = Deck.DeckState.UNFOLDED
-	$ApDeck.show()
-	$HpDeck.show()
+	#$ApDeck.show()
+	#$HpDeck.show()
 	$ApDeck.deck_state = Deck.DeckState.UNFOLDED
 	$HpDeck.deck_state = Deck.DeckState.UNFOLDED
 	$CompleteCardDeck.deck_state = Deck.DeckState.UNFOLDED
@@ -116,6 +122,8 @@ func change_scene() -> void:
 		var tween = get_tree().create_tween()
 		tween.tween_property(child, "scale", Vector2(), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	await get_tree().create_timer(0.5).timeout
+	$CapturedApDeck.hide()
+	$CapturedHpDeck.hide()
 	$ApDeck.deck_state = Deck.DeckState.STACKED
 	$HpDeck.deck_state = Deck.DeckState.STACKED
 	$CompleteCardDeck.deck_state = Deck.DeckState.STACKED
@@ -123,7 +131,10 @@ func change_scene() -> void:
 	var tween = get_tree().create_tween()
 	tween.parallel().tween_property($ApDeck, "global_position:y", $ApDeck.global_position.y - 500, 0.5)
 	tween.parallel().tween_property($HpDeck, "global_position:y", $HpDeck.global_position.y + 500, 0.5)
-	tween.parallel().tween_property($CompleteCardDeck, "global_position:x", 1018, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property($CompleteCardDeck, "global_position:x", 1704, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property($Board, "global_position:x", 2448, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+	await tween.finished
 	await get_tree().create_timer(0.5).timeout
 	player_win.emit()
 	
@@ -155,11 +166,13 @@ func _on_board_enemy_card_killed(card_to_bisect : Card) -> void:
 	# create ap and hp cards from complete card
 	var new_ap_card_data : CardData = CardData.new()
 	new_ap_card_data.card_type = CardData.CARD_TYPE.AP_CARD
+	new_ap_card_data.card_team = CardData.CARD_TEAM.ENEMY
 	new_ap_card_data.card_ap = card_to_bisect.card_data.card_ap
 	new_ap_card_data.card_ap_texture = card_to_bisect.card_data.card_ap_texture
 	new_ap_card_data.card_ap_ability = card_to_bisect.card_data.card_ap_ability
 	var new_hp_card_data : CardData = CardData.new()
 	new_hp_card_data.card_type = CardData.CARD_TYPE.HP_CARD
+	new_hp_card_data.card_team = CardData.CARD_TEAM.ENEMY
 	new_hp_card_data.card_hp = card_to_bisect.card_data.card_hp
 	new_hp_card_data.card_hp_ability = card_to_bisect.card_data.card_hp_ability
 	new_hp_card_data.card_hp_texture = card_to_bisect.card_data.card_hp_texture

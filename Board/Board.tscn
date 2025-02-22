@@ -91,67 +91,68 @@ board_data = ExtResource("2_blhir")
 
 [node name="BoardTile0" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_aduop")
+position = Vector2(-768, -768)
 
 [node name="BoardTile1" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_74aji")
-position = Vector2(512, 0)
+position = Vector2(-256, -768)
 
 [node name="BoardTile2" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_8u2ee")
-position = Vector2(1024, 0)
+position = Vector2(256, -768)
 
 [node name="BoardTile3" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_fnqjs")
-position = Vector2(1536, 0)
+position = Vector2(768, -768)
 
 [node name="BoardTile4" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_68b36")
-position = Vector2(0, 512)
+position = Vector2(-768, -256)
 
 [node name="BoardTile5" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_1j8yd")
-position = Vector2(512, 512)
+position = Vector2(-256, -256)
 
 [node name="BoardTile6" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_trcml")
-position = Vector2(1024, 512)
+position = Vector2(256, -256)
 
 [node name="BoardTile7" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_vgb1p")
-position = Vector2(1536, 512)
+position = Vector2(768, -256)
 
 [node name="BoardTile8" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_afidi")
-position = Vector2(0, 1024)
+position = Vector2(-768, 256)
 
 [node name="BoardTile9" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_v8lri")
-position = Vector2(512, 1024)
+position = Vector2(-256, 256)
 
 [node name="BoardTile10" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_6veo0")
-position = Vector2(1024, 1024)
+position = Vector2(256, 256)
 
 [node name="BoardTile11" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_0wce1")
-position = Vector2(1536, 1024)
+position = Vector2(768, 256)
 
 [node name="BoardTile12" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_wsemk")
-position = Vector2(0, 1536)
+position = Vector2(-768, 768)
 can_place_card = true
 
 [node name="BoardTile13" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_qeu6w")
-position = Vector2(512, 1536)
+position = Vector2(-256, 768)
 can_place_card = true
 
 [node name="BoardTile14" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_7fc3s")
-position = Vector2(1024, 1536)
+position = Vector2(256, 768)
 can_place_card = true
 
 [node name="BoardTile15" parent="." instance=ExtResource("10_8d01k")]
 material = SubResource("ShaderMaterial_qbi53")
-position = Vector2(1536, 1536)
+position = Vector2(768, 768)
 can_place_card = true

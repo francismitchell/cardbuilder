@@ -17,6 +17,16 @@ func _ready() -> void:
 	#$HpDeck.deck_unfold_node = $HpUnfoldLoc
 	
 func scene_setup() -> void:
+	# timer needed as hacky fix to avoid weird positioning of decks on load
+	await get_tree().create_timer(0.1).timeout
+	$ApDeck.global_position.x = 216
+	$HpDeck.global_position.x = 216
+	$ApDeck.deck_width_px = 1800
+	$HpDeck.deck_width_px = 1800
+	var tween = get_tree().create_tween()
+	tween.parallel().tween_property($ApDeck, "global_position:y", 224, 0.5)
+	tween.parallel().tween_property($HpDeck, "global_position:y", 864, 0.5)
+	await tween.finished
 	$ApDeck.deck_state = Deck.DeckState.UNFOLDED
 	$HpDeck.deck_state = Deck.DeckState.UNFOLDED
 	$CompleteCardDeck.deck_state = Deck.DeckState.UNFOLDED
@@ -65,11 +75,16 @@ func _on_amalgamate_pressed() -> void:
 	new_card_data.card_hp_ability = selected_hp_card_data.card_hp_ability
 	new_card_data.card_ap_texture = selected_ap_card_data.card_ap_texture
 	new_card_data.card_hp_texture = selected_hp_card_data.card_hp_texture
-	$CompleteCardDeck.add_card_data(new_card_data)
-	$CompleteCardDeck.get_children().back().global_position = $ApAmalLoc.position
-	$CompleteCardDeck.deck_state = Deck.DeckState.UNFOLDED
+	# erase old ap and hp cards
 	$ApDeck.erase_selected_card()
 	$HpDeck.erase_selected_card()
+	# add new comp card node and position for amalgamation animation
+	$CompleteCardDeck.add_card_data(new_card_data)
+	$CompleteCardDeck.get_children().back().global_position = $ApAmalLoc.position + Vector2(0.0, 100.0)
+	$CompleteCardDeck.get_children().back().prepare_for_amalgamation()
+	$CompleteCardDeck.get_children().back().unsplit_card()
+	await $CompleteCardDeck.get_children().back().card_unsplit
+	$CompleteCardDeck.deck_state = Deck.DeckState.UNFOLDED
 
 func _on_bisect_pressed() -> void:
 	if not $CompleteCardDeck.selected_card: return
