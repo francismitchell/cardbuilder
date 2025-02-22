@@ -187,6 +187,7 @@ func split_card() -> void:
 			tween.parallel().tween_property(child, "stretch_amount", 100.0, 0.5).set_trans(Tween.TRANS_BOUNCE)
 	$CPUParticles2D.emitting = true
 	$CPUParticles2D2.emitting = true
+	$CPUParticles2D3.emitting = true
 	await tween.finished
 	card_split.emit()
 
