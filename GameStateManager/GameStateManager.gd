@@ -42,6 +42,16 @@ func load_card_builder() -> void:
 		table.queue_free()
 	add_child(card_builder)
 	card_builder.scene_setup()
+
+
+	var set_shape_colour = func (colour : Color):
+		$Background.material.set("shader_parameter/shape_colour", colour)
+	var set_base_colour = func (colour : Color):
+		$Background.material.set("shader_parameter/base_colour", colour)
+	var tween = get_tree().create_tween()
+	#tween.parallel().tween_method(set_shape_colour, $Background.material.get("shader_parameter/shape_colour"), Color(0.076, 0.04, 0.004, 1.0),0.5)
+	tween.parallel().tween_method(set_base_colour, $Background.material.get("shader_parameter/shape_colour"), Color(0.295, 0.338, 0.219, 1.0),0.5)
+
 	
 func load_table() -> void:
 	table = table_scene.instantiate()
@@ -58,6 +68,13 @@ func load_table() -> void:
 	card_builder.queue_free()
 	add_child(table)
 	table.scene_setup(comp_deck_pos_x)
+	var set_shape_colour = func (colour : Color):
+		$Background.material.set("shader_parameter/shape_colour", colour)
+	var set_base_colour = func (colour : Color):
+		$Background.material.set("shader_parameter/base_colour", colour)
+	var tween = get_tree().create_tween()
+	#tween.parallel().tween_method(set_shape_colour, $Background.material.get("shader_parameter/shape_colour"), Color(0.076, 0.04, 0.004, 1.0),0.5)
+	tween.parallel().tween_method(set_base_colour, $Background.material.get("shader_parameter/shape_colour"), Color(0.014, 0.084, 0.134, 1.0),0.5)
 	
 func _on_deck_complete() -> void:
 	await card_builder.scene_shutdown()

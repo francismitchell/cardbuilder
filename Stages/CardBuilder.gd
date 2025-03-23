@@ -18,7 +18,7 @@ func _ready() -> void:
 	
 func scene_setup() -> void:
 	# timer needed as hacky fix to avoid weird positioning of decks on load
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.2).timeout
 	$ApDeck.global_position.x = 216
 	$HpDeck.global_position.x = 216
 	$ApDeck.deck_width_px = 1800

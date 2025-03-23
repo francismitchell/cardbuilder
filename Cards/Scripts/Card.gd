@@ -185,10 +185,12 @@ func split_card() -> void:
 	for child in get_children():
 		if child is Viscera:
 			tween.parallel().tween_property(child, "stretch_amount", 100.0, 0.5).set_trans(Tween.TRANS_BOUNCE)
+	await get_tree().create_timer(0.1).timeout
 	$CPUParticles2D.emitting = true
 	$CPUParticles2D2.emitting = true
 	$CPUParticles2D3.emitting = true
 	await tween.finished
+
 	card_split.emit()
 
 

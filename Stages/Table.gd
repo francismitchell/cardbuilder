@@ -135,7 +135,7 @@ func change_scene() -> void:
 	tween.parallel().tween_property($Board, "global_position:x", 2448, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 	await tween.finished
-	await get_tree().create_timer(0.5).timeout
+	#await get_tree().create_timer(0.5).timeout
 	player_win.emit()
 	
 func _on_board_enemy_card_attacking_player(enemy_card : Card) -> void:
